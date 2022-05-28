@@ -6,6 +6,8 @@
 
 from bertopic import BERTopic
 
+import streamlit as st
+
 
 # In[3]:
 
