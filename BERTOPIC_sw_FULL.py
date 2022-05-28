@@ -10,7 +10,7 @@ from bertopic import BERTopic
 # In[3]:
 
 
-piacere = open('/Users/albertobaldi/Desktop/Ricerca/READINGMACHINES/ILPIACERE/TXT/ILPIACERETXT/PIACERE/SINGOLI/IlPiacere_LibroCompleto.txt', encoding="utf-8").read().split('\n')
+file = st.file_uploader(label, type=None, accept_multiple_files=False, key=None, help=None, on_change=None, args=None, kwargs=None, *, disabled=False)
 
 
 # In[4]:
@@ -26,7 +26,7 @@ topic_model = BERTopic(language="multilingual", calculate_probabilities=True, ve
 # In[5]:
 
 
-topics, probs = topic_model.fit_transform(piacere)
+topics, probs = topic_model.fit_transform(file)
 
 
 # In[6]:
