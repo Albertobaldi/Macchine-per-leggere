@@ -40,47 +40,10 @@ def get_topic_model(df):
 # In[6]:
 
 
-freq = topic_model.get_topic_info(); freq.head(5)
+@st.cache(allow_output_mutation=True)
+def get_intertopic_dist_map(topic_model):
+    return topic_model.visualize_topics()
 
-
-# In[7]:
-
-
-topic_model.get_topic(0)  # Select the most frequent topic
-
-
-# In[8]:
-
-
-topic_model.visualize_topics()
-
-
-# In[9]:
-
-
-topic_model.visualize_distribution(probs[200], min_probability=0.015)
-
-
-# In[10]:
-
-
-topic_model.visualize_hierarchy(top_n_topics=50)
-
-
-# In[11]:
-
-
-topic_model.visualize_barchart(top_n_topics=5)
-
-
-# In[12]:
-
-
-topic_model.visualize_heatmap(n_clusters=20, width=1000, height=1000)
-
-
-# In[13]:
-
-
-topic_model.visualize_term_rank()
-
+@st.cache(allow_output_mutation=True)
+def get_topic_keyword_barcharts(topic_model):
+    return topic_model.visualize_barchart(top_n_topics=9, n_words=5, height=800)
