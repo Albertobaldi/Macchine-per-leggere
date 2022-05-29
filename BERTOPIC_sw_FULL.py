@@ -20,7 +20,7 @@ import matplotlib.pyplot as plt
 df = None
 uploaded_file = st.sidebar.file_uploader('Carica un file di testo')
 if uploaded_file is not None:
-    df = (uploaded_file, encoding="utf-8").read().split('\n')
+    df = uploaded_file.read().split('\n')
 
 
 # In[4]:
