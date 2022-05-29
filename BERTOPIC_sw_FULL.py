@@ -3,6 +3,7 @@
 
 # In[2]:
 
+from asyncore import read
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -20,8 +21,9 @@ import matplotlib.pyplot as plt
 df = None
 uploaded_file = st.sidebar.file_uploader('Carica un file di testo')
 if uploaded_file is not None:
-    df = uploaded_file.read().split('\n')
-
+    string_data = uploaded_file.read().split('\n')
+    st.write(string_data)
+text = string_data
 
 # In[4]:
 
