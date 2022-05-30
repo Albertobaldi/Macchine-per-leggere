@@ -46,21 +46,26 @@ def CountVectorizer():
 
 def BERTopic():
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
+    return BERTopic()
 
 # %%
 def topic_model_transform():
    topics, probs = topic_model.fit_transform(dataframe)
+   return topic_model_transform()
 
 # %%
 def topic_model_get_topic_info():
    freq = topic_model.get_topic_info(); freq.head(5)
+   return topic_model_get_topic_info()
 
 # %%
 def topic_model_get_topic():
-   return topic_model.get_topic(0)  # Select the most frequent topic
+   topic_model.get_topic(0)  # Select the most frequent topic
+   return topic_model_get_topic()
 
 # %%
 def topic_model_visualize_topics():
+   topic_model.visualize_topics()
    return topic_model.visualize_topics()
 
 # %%
