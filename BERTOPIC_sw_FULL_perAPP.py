@@ -54,14 +54,11 @@ def get_topics_over_time(text, topics, topic_model):
 def get_topic_keyword_barcharts(topic_model):
     return topic_model.visualize_barchart(top_n_topics=9, n_words=5, height=800)
 
-def get_intertopic_dist_map(topic_model):
-    return topic_model.visualize_topics(topics)
-
 uploaded_file = st.sidebar.file_uploader('Carica un file .txt')
 st.sidebar.caption('Verifica che il file sia privo di formattazione')
 st.sidebar.markdown("""---""")
 if uploaded_file is not None:
     text = pd.read_table(uploaded_file,header=None)
     
-    fig1 = get_intertopic_dist_map(topic_model)
+    fig1 = get_topic_keyword_barcharts(topic_model)
     st.write(fig1)
