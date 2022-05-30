@@ -6,7 +6,6 @@ import io
 from io import StringIO
 import string
 from collections import Counter
-nltk.download('stopwords')
 
 from nltk.corpus import stopwords
 stopwords = stopwords.words('italian')
