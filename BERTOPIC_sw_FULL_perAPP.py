@@ -3,8 +3,8 @@ from bertopic import BERTopic
 import nltk
 import streamlit as st
 import pandas as pd
+import io
 from io import StringIO
-import StringIO as stringio
 nltk.download('stopwords')
 
 # %%
