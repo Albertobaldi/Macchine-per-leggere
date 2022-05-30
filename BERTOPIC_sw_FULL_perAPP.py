@@ -9,17 +9,14 @@ import string
 from collections import Counter
 nltk.download('stopwords')
 
-# %%
 from nltk.corpus import stopwords
 stopwords = stopwords.words('italian')
 
-# %%
 st.set_page_config(
     page_title="BERTopic",
     page_icon="🎈",
 )
 
-# %%
 
 def _max_width_():
     max_width_str = f"max-width: 1400px;"
@@ -43,7 +40,6 @@ if filename is not None:
     with open(filename, 'r', encoding='utf-8') as f:
         lines = f.readlines()    
         
-        # %%
 
 def get_topic_model(lines):
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True)
@@ -51,27 +47,22 @@ def get_topic_model(lines):
     freq = topic_model.get_topic_info(); freq.head(5)
     return topics, freq, topic_model
 
-# %%
    
 def topic_model_visualize(topic_model):
     return topic_model.visualize_topics()
 
-# %%
 
 def topic_model_distribution(topic_model):
     return topic_model.visualize_distribution(probs[200], min_probability=0.015)
 
-# %%
 
 def topic_model_hierarchy(topic_model):
     return topic_model.visualize_hierarchy(top_n_topics=50)
 
-# %%
 
 def topic_model_barchart(topic_model):
     return topic_model.visualize_barchart(top_n_topics=5)
     
-# %%
     
 fig1 = topic_model_visualize(topic_model)
 st.write(fig1)
