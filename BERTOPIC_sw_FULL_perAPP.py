@@ -66,7 +66,8 @@ uploaded_file = st.sidebar.file_uploader('Carica un file .txt')
 st.sidebar.caption('Verifica che il file sia privo di formattazione')
 st.sidebar.markdown("""---""")
 if uploaded_file is not None:
-    file = open(uploaded_file, encoding="utf-8").read().split('\n')
+    file = with open("uploaded_file", 'r') as file:
+           data = file.read().replace('\n', '')
     text, topic_model, topics = get_topic_model(file)
     
     fig1 = topic_model_visualize(topic_model)
