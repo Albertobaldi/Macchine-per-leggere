@@ -32,8 +32,8 @@ def _max_width_():
     
 # %%
 
-def get_topic_model(file):
-    text = file
+def get_topic_model(data):
+    text = data
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True)
     topics, probs = topic_model.fit_transform(file)
     freq = topic_model.get_topic_info(); freq.head(5)
@@ -66,9 +66,9 @@ uploaded_file = st.sidebar.file_uploader('Carica un file .txt')
 st.sidebar.caption('Verifica che il file sia privo di formattazione')
 st.sidebar.markdown("""---""")
 if uploaded_file is not None:
-    file = with open("uploaded_file", 'r') as file:
-           data = file.read().replace('\n', '')
-    text, topic_model, topics = get_topic_model(file)
+    with open("uploaded_file", 'r') as file:
+        data = file.read().replace('\n', '')
+    text, topic_model, topics = get_topic_model(data)
     
     fig1 = topic_model_visualize(topic_model)
     st.write(fig1)
