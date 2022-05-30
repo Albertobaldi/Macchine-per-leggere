@@ -9,13 +9,6 @@ nltk.download('stopwords')
 from nltk.corpus import stopwords
 stopwords = stopwords.words('italian')
 
-#%%
-
-uploaded_file = st.file_uploader("Choose a file")
-if uploaded_file is not None:
-    string_data = stringio.read()
-    st.write(string_data)
-
 # %%
 st.set_page_config(
     page_title="BERTopic",
@@ -36,6 +29,13 @@ def _max_width_():
     """,
         unsafe_allow_html=True,
     )
+    
+# %%
+uploaded_file = st.sidebar.file_uploader('Carica un file .txt')
+st.sidebar.caption('Verifica che il file sia privo di formattazione')
+st.sidebar.markdown("""---""")
+if uploaded_file is not None:
+    text = pd.read_table(uploaded_file,header=None)
 
 # %%
 from sklearn.feature_extraction.text import CountVectorizer
