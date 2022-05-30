@@ -13,6 +13,5 @@ mkdocstrings>=0.8.0
 pytest>=5.4.3
 pytest-cov>=2.6.1
 transformers==3.5.1
-torch>=1.4.0
 flair==0.7
 spacy>=3.0.1
