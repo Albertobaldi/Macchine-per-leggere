@@ -2,7 +2,7 @@
 from bertopic import BERTopic
 import nltk
 import streamlit as st
-from pandas.compat import StringIO
+import pandas as pd
 nltk.download('stopwords')
 
 # %%
@@ -35,8 +35,8 @@ stopwords = stopwords.words("italian")
 
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
-    string_data = stringio.read()
-    st.write(string_data)
+    dataframe = pd.read(uploaded_file)
+    st.write(dataframe)
 
 
 # %%
@@ -50,7 +50,7 @@ def BERTopic():
 
 # %%
 def topic_model_transform():
-   topics, probs = topic_model.fit_transform(uploaded_file)
+   topics, probs = topic_model.fit_transform(dataframe)
 
 # %%
 def topic_model_get_topic_info():
