@@ -63,14 +63,14 @@ if filename is not None:
     
     topic_model, topics = get_topic_model(lines)
     
-fig1 = topic_model_visualize(topic_model)
-st.write(fig1)
+    fig1 = topic_model_visualize(topic_model)
+    st.write(fig1)
     
-fig2 = topic_model_distribution(topic_model)
-st.write(fig2)
+    fig2 = topic_model_distribution(topic_model)
+    st.write(fig2)
     
-fig3 = topic_model_hierarchy(topic_model)
-st.write(fig3)
+    fig3 = topic_model_hierarchy(topic_model)
+    st.write(fig3)
     
-fig4 = topic_model_barchart(topic_model)
-st.write(fig4)
+    fig4 = topic_model_barchart(topic_model)
+    st.write(fig4)
