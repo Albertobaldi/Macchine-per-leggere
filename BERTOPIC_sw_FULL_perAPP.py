@@ -28,9 +28,9 @@ def _max_width_():
         unsafe_allow_html=True,
     )
     
-def get_topic_model(file):
+def get_topic_model(lines):
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True)
-    topics, probs = topic_model.fit_transform(file)
+    topics, probs = topic_model.fit_transform(lines)
     freq = topic_model.get_topic_info(); freq.head(5)
     return topics, freq, topic_model
     
@@ -54,7 +54,7 @@ if filename is not None:
     with open(filename, 'r', encoding='utf-8') as f:
         lines = f.readlines()    
 
-    text, dates, topic_model, topics = get_topic_model(lines)
+text, dates, topic_model, topics = get_topic_model(lines)
     
 with st.container():
     st.write("This is inside the container")
