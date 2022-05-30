@@ -39,7 +39,6 @@ def CountVectorizer():
     return CountVectorizer()
 
 def topic_model(df):
-    text = dataframe
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
     topics, _ = topic_model.fit_transform(text)
     return text, topic_model, topics
