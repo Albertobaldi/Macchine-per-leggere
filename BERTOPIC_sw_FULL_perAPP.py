@@ -41,25 +41,16 @@ uploaded_file = st.sidebar.file_uploader('Carica un file .txt')
 st.sidebar.caption('Verifica che il file sia privo di formattazione')
 st.sidebar.markdown("""---""")
 if filename is not None:
-    name = 'example'
-    ext = 'txt'
-
-    filename = uploaded_file'{name}.{ext}'
-
-with open(filename, 'r', encoding='utf-8') as uploaded_files:
-    lines = f.readlines()
-
-    for line in lines:
-        print(line)
+    with open(filename, 'r', encoding='utf-8') as f:
+        lines = f.readlines()    
     
-    
-    def get_topic_model(df):
+    def get_topic_model(lines):
         topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True)
         topics, probs = topic_model.fit_transform(df)
         freq = topic_model.get_topic_info(); freq.head(5)
         return topics, freq
     
-    topic_model, topics = get_topic_model(df)
+    topic_model, topics = get_topic_model(lines)
 
     def topic_model_visualize(topic_model):
         return topic_model.visualize_topics()
