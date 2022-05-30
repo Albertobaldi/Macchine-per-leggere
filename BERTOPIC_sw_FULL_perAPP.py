@@ -31,16 +31,6 @@ def _max_width_():
         unsafe_allow_html=True,
     )
 
-
-filename = None
-uploaded_file = st.sidebar.file_uploader('Carica un file .txt')
-st.sidebar.caption('Verifica che il file sia privo di formattazione')
-st.sidebar.markdown("""---""")
-if filename is not None:
-    with open(filename, 'r', encoding='utf-8') as f:
-        lines = f.readlines()    
-        
-
 def get_topic_model(lines):
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True)
     topics, probs = topic_model.fit_transform(lines)
@@ -62,7 +52,14 @@ def topic_model_hierarchy(topic_model):
 
 def topic_model_barchart(topic_model):
     return topic_model.visualize_barchart(top_n_topics=5)
-    
+
+filename = None
+uploaded_file = st.sidebar.file_uploader('Carica un file .txt')
+st.sidebar.caption('Verifica che il file sia privo di formattazione')
+st.sidebar.markdown("""---""")
+if filename is not None:
+    with open(filename, 'r', encoding='utf-8') as f:
+        lines = f.readlines()   
     
 fig1 = topic_model_visualize(topic_model)
 st.write(fig1)
