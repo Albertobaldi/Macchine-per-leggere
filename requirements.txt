@@ -26,5 +26,5 @@ mkdocstrings>=0.8.0
 transformers==3.5.1
 torch>=1.4.0
 flair==0.7
-gensim>=4.0.0
+gensim>=4.2.0
 spacy>=3.0.1
