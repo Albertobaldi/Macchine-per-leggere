@@ -14,6 +14,33 @@ if uploaded_file is not None:
     string_data = stringio.read()
     st.write(string_data)
 
+# %%
+st.set_page_config(
+    page_title="BERTopic",
+    page_icon="🎈",
+)
+
+# %%
+
+def _max_width_():
+    max_width_str = f"max-width: 1400px;"
+    st.markdown(
+        f"""
+    <style>
+    .reportview-container .main .block-container{{
+        {max_width_str}
+    }}
+    </style>    
+    """,
+        unsafe_allow_html=True,
+    )
+
+# %%
+from nltk.corpus import stopwords
+stopwords = stopwords.words("italian")
+
+# %%
+from sklearn.feature_extraction.text import CountVectorizer
 
 # %%
 from sklearn.feature_extraction.text import CountVectorizer
