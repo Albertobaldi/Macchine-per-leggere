@@ -60,15 +60,3 @@ st.sidebar.caption('Verifica che il file sia privo di formattazione')
 st.sidebar.markdown("""---""")
 if uploaded_file is not None:
     text = pd.read_table(uploaded_file,header=None)
-
-    freq = topic_model.get_topic_info(); 
-    st.write(freq.head(10))
-
-    fig1 = get_intertopic_dist_map(topic_model)
-    st.write(fig1)
-
-    fig2 = get_topics_over_time(text, topics, topic_model)
-    st.write(fig2)
-
-    fig3 = get_topic_keyword_barcharts(topic_model)
-    st.write(fig3)
