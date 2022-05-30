@@ -66,6 +66,7 @@ st.sidebar.caption('Verifica che il file sia privo di formattazione')
 st.sidebar.markdown("""---""")
 if uploaded_file is not None:
     text = pd.read_table(uploaded_file,header=None)
+    text, topic_model, topics = get_topic_model(text)
     
     fig1 = topic_model_visualize(topic_model)
     st.write(fig1)
