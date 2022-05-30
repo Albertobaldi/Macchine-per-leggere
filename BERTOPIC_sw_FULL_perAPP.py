@@ -37,7 +37,7 @@ def _max_width_():
 
 # %%
 from nltk.corpus import stopwords
-stopwords = stopwords.words("italian")
+stopwords = stopwords.words('italian')
 
 # %%
 from sklearn.feature_extraction.text import CountVectorizer
