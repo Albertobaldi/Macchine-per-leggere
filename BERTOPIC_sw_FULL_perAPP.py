@@ -46,29 +46,36 @@ def topic_model_hierarchy(topic_model):
 def topic_model_barchart(topic_model):
     return topic_model.visualize_barchart(top_n_topics=5)
     
-filename = None
+df = None
 uploaded_file = st.sidebar.file_uploader('Carica un file .txt')
 st.sidebar.caption('Verifica che il file sia privo di formattazione')
 st.sidebar.markdown("""---""")
-if filename is not None:
-    with open(filename, 'r', encoding='utf-8') as f:
+if df is not None:
+    with open(df, 'r', encoding='utf-8') as f:
         lines = f.readlines()    
-    
+elif st.sidebar.button('Load demo data'):
+    if st.checkbox('Preview the data'):
+        st.subheader('5 rows of raw data')
+        st.write(data[:5])
+
+    # st.write(df.head())
+
+
     tm_state = st.text('Modeling topics...')
     text, dates, topic_model, topics = get_topic_model(lines)
     tm_state.text('Modeling topics... done!')
     
     with st.container():
-     st.write("This is inside the container")
+    st.write("This is inside the container")
 
     fig1 = topic_model_visualize(topic_model)
-     st.write(fig1)
+    st.write(fig1)
     
     fig2 = topic_model_distribution(topic_model)
-     st.write(fig2)
+    st.write(fig2)
     
     fig3 = topic_model_hierarchy(topic_model)
-     st.write(fig3)
+    st.write(fig3)
     
     fig4 = topic_model_barchart(topic_model)
-     st.write(fig4)
+    st.write(fig4)
