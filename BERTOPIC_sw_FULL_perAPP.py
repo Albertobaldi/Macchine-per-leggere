@@ -33,34 +33,6 @@ def _max_width_():
     """,
         unsafe_allow_html=True,
     )
-    
-# %%
-
-def get_topic_model(df_ready):
-    topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True)
-    topics, probs = topic_model.fit_transform(df_ready)
-    freq = topic_model.get_topic_info(); freq.head(5)
-    return topics, freq
-
-# %%
-
-def topic_model_visualize(topic_model):
-    return topic_model.visualize_topics()
-
-# %%
-
-def topic_model_distribution(topic_model):
-    return topic_model.visualize_distribution(probs[200], min_probability=0.015)
-
-# %%
-
-def topic_model_hierarchy(topic_model):
-    return topic_model.visualize_hierarchy(top_n_topics=50)
-    
-# %%
-
-def topic_model_barchart(topic_model):
-    return topic_model.visualize_barchart(top_n_topics=5)
 
 # %%
 
@@ -71,8 +43,25 @@ st.sidebar.markdown("""---""")
 if uploaded_file is not None:
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
     df = stringio.read()
-    df_ready = df.astype(str)
     topic_model, topics = get_topic_model(df_ready)
+    
+    def get_topic_model(df_ready):
+    topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True)
+    topics, probs = topic_model.fit_transform(df_ready)
+    freq = topic_model.get_topic_info(); freq.head(5)
+        return topics, freq
+
+    def topic_model_visualize(topic_model):
+        return topic_model.visualize_topics()
+
+    def topic_model_distribution(topic_model):
+        return topic_model.visualize_distribution(probs[200], min_probability=0.015)
+
+    def topic_model_hierarchy(topic_model):
+        return topic_model.visualize_hierarchy(top_n_topics=50)  
+
+    def topic_model_barchart(topic_model):
+        return topic_model.visualize_barchart(top_n_topics=5)
     
     fig1 = topic_model_visualize(topic_model)
     st.write(fig1)
