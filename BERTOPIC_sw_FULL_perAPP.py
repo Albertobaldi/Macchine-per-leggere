@@ -41,8 +41,7 @@ uploaded_file = st.sidebar.file_uploader('Carica un file .txt')
 st.sidebar.caption('Verifica che il file sia privo di formattazione')
 st.sidebar.markdown("""---""")
 if uploaded_file is not None:
-    stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
-    df = stringio.read()
+    df = pd.read_table(uploaded_file, dtype = str)
     
     
     def get_topic_model(df):
