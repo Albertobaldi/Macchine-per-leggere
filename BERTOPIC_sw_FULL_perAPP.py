@@ -32,12 +32,6 @@ from nltk.corpus import stopwords
 stopwords = stopwords.words("italian")
 
 # %%
-
-uploaded_file = st.file_uploader("Choose a file")
-if uploaded_file is not None:
-    dataframe = pd.read_table(uploaded_file,header=None)
-    
-# %%
 from sklearn.feature_extraction.text import CountVectorizer
 
 def CountVectorizer():
