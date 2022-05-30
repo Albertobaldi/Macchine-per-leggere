@@ -5,7 +5,7 @@ nltk.download('stopwords')
 
 # %%
 from nltk.corpus import stopwords
-stopwords = stopwords.words(italian)
+stopwords = stopwords.words('italian')
 
 #%%
 
@@ -34,13 +34,6 @@ def _max_width_():
     """,
         unsafe_allow_html=True,
     )
-
-# %%
-from nltk.corpus import stopwords
-stopwords = stopwords.words('italian')
-
-# %%
-from sklearn.feature_extraction.text import CountVectorizer
 
 # %%
 from sklearn.feature_extraction.text import CountVectorizer
