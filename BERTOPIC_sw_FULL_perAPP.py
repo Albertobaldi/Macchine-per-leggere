@@ -1,6 +1,7 @@
 # %%
 from bertopic import BERTopic
 import nltk
+import streamlit as st
 nltk.download('stopwords')
 
 # %%
