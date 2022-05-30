@@ -40,22 +40,22 @@ def get_topic_model(text):
 
 # %%
 
-def topic_model_visualize(topic_model)
+def topic_model_visualize(topic_model):
     return topic_model.visualize_topics()
 
 # %%
 
-def topic_model_distribution(topic_model)
+def topic_model_distribution(topic_model):
     return topic_model.visualize_distribution(probs[200], min_probability=0.015)
 
 # %%
 
-def topic_model_hierarchy(topic_model)
+def topic_model_hierarchy(topic_model):
     return topic_model.visualize_hierarchy(top_n_topics=50)
     
 # %%
 
-def topic_model_barchart(topic_model)
+def topic_model_barchart(topic_model):
     return topic_model.visualize_barchart(top_n_topics=5)
 
 # %%
