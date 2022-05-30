@@ -53,8 +53,10 @@ st.sidebar.markdown("""---""")
 if filename is not None:
     with open(filename, 'r', encoding='utf-8') as f:
         lines = f.readlines()    
-
-text, dates, topic_model, topics = get_topic_model(lines)
+    
+    tm_state = st.text('Modeling topics...')
+    text, dates, topic_model, topics = get_topic_model(lines)
+    tm_state.text('Modeling topics... done!')
     
 with st.container():
     st.write("This is inside the container")
