@@ -36,37 +36,3 @@ st.sidebar.caption('Verifica che il file sia privo di formattazione')
 st.sidebar.markdown("""---""")
 if uploaded_file is not None:
     text = pd.read_table(uploaded_file,header=None)
-
-# %%
-from sklearn.feature_extraction.text import CountVectorizer
-
-vectorizer_model = CountVectorizer(stopwords)
-
-topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
-
-# %%
-topics, probs = topic_model.fit_transform(uploaded_file)
-
-# %%
-freq = topic_model.get_topic_info(); freq.head(5)
-
-# %%
-topic_model.get_topic(0)  # Select the most frequent topic
-
-# %%
-topic_model.visualize_topics()
-
-# %%
-topic_model.visualize_distribution(probs[200], min_probability=0.015)
-
-# %%
-topic_model.visualize_hierarchy(top_n_topics=50)
-
-# %%
-topic_model.visualize_barchart(top_n_topics=5)
-
-# %%
-topic_model.visualize_heatmap(n_clusters=20, width=1000, height=1000)
-
-# %%
-topic_model.visualize_term_rank()
