@@ -1,11 +1,23 @@
-from bertopic import BERTopic
-import nltk
 import streamlit as st
 import pandas as pd
+import numpy as np
+import base64
+import warnings
+warnings.filterwarnings("ignore")
+import re
+from tqdm import tqdm
+from quickstart import get_service, get_data
+import contractions
+import string
+import demoji
+import nltk
 import io
 from io import StringIO
 import string
 from collections import Counter
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+from bertopic import BERTopic
 
 from nltk.corpus import stopwords
 stopwords = stopwords.words('italian')
