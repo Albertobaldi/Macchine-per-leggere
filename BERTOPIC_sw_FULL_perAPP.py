@@ -2,7 +2,7 @@
 from bertopic import BERTopic
 import nltk
 import streamlit as st
-from pandas.compact import StringIO
+from pandas.compat import StringIO
 nltk.download('stopwords')
 
 # %%
