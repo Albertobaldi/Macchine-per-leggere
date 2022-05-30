@@ -45,7 +45,7 @@ def get_topic_model(lines):
     freq = topic_model.get_topic_info(); freq.head(5)
     return topics, freq, topic_model
 
-    text, dates, topic_model, topics = get_topic_model(cleaned_df)
+text, dates, topic_model, topics = get_topic_model(lines)
    
 def topic_model_visualize(topic_model):
     return topic_model.visualize_topics()
