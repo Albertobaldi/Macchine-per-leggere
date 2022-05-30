@@ -50,6 +50,9 @@ def get_topic_model(df):
     topics, _ = topic_model.fit_transform(text)
     return text, topic_model, topics
 
+def get_intertopic_dist_map(topic_model):
+    return topic_model.visualize_topics()
+
 # %%
 def topic_model_transform():
    topics, probs = topic_model.fit_transform(dataframe)
