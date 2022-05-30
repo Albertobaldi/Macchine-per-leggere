@@ -40,7 +40,7 @@ def get_topic_model(lines):
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True)
     topics, probs = topic_model.fit_transform(lines)
     freq = topic_model.get_topic_info(); freq.head(5)
-    return topics, freq
+    return topics, freq, topic_model
 
 # %%
    
