@@ -50,45 +50,56 @@ def get_topic_model(df):
     topics, _ = topic_model.fit_transform(text)
     return text, topic_model, topics
 
-def get_intertopic_dist_map(topic_model):
-    return topic_model.visualize_topics()
+def get_topics_over_time(text, topics, topic_model):
+    topics_over_time = topic_model.topics_over_time(docs=text, 
+                                                    topics=topics, 
+                                                    global_tuning=True, 
+                                                    evolution_tuning=True)
+    return topic_model.visualize_topics_over_time(topics_over_time, top_n_topics=10)
 
-# %%
-def topic_model_transform():
-   topics, probs = topic_model.fit_transform(dataframe)
-   return topic_model_transform()
+@st.cache(allow_output_mutation=True)
+def get_topic_keyword_barcharts(topic_model):
+    return topic_model.visualize_barchart(top_n_topics=9, n_words=5, height=800)
 
-# %%
-def topic_model_get_topic_info():
-   freq = topic_model.get_topic_info(); freq.head(5)
-   return topic_model_get_topic_info()
+df = None
+uploaded_file = st.sidebar.file_uploader('Choose a CSV file')
+st.sidebar.caption('Make sure the csv contains a column titled "date" and a column titled "text"')
+st.sidebar.markdown("""---""")
+if uploaded_file is not None:
+    df = pd.read_csv(uploaded_file)
+    print(df.head().to_markdown())
+    # st.write(df)
+elif st.sidebar.button('Load demo data'):
+    data_load_state = st.text('Loading data...')
+    df = pd.read_csv('./cleaned_data/medium-suggested-cleaned.csv')
+    data_load_state.text('Loading data... done!')
+    if st.checkbox('Preview the data'):
+        st.subheader('5 rows of raw data')
+        st.write(data[:5])
 
-# %%
-def topic_model_get_topic():
-   topic_model.get_topic(0)  # Select the most frequent topic
-   return topic_model_get_topic()
+    # st.write(df.head())
 
-# %%
-def topic_model_visualize_topics():
-   topic_model.visualize_topics()
-   return topic_model.visualize_topics()
+if df is not None:
+    # concatenate title and subtitle columns
+    data_clean_state = st.text('Cleaning data...')
+    df['text'] = preprocess(df['text'].astype(str))
+    cleaned_df = df[['date', 'text']]
+    cleaned_df = cleaned_df.dropna(subset=['text'])
+    st.write(len(cleaned_df), "total documents")
+    data_clean_state.text('Cleaning data... done!')
 
-# %%
-def topic_model_visualize_distribution():
-   return topic_model.visualize_distribution(probs[200], min_probability=0.015)
+    tm_state = st.text('Modeling topics...')
+    text, topic_model, topics = get_topic_model(cleaned_df)
+    tm_state.text('Modeling topics... done!')
 
-# %%
-def topic_model_visualize_hierarchy():
-   return topic_model.visualize_hierarchy(top_n_topics=50)
+    freq = topic_model.get_topic_info(); 
+    st.write(freq.head(10))
 
-# %%
-def topic_model_visualize_barchart():
-   return topic_model.visualize_barchart(top_n_topics=5)
+    fig1 = get_intertopic_dist_map(topic_model)
+    st.write(fig1)
 
-# %%
-def topic_model_visualize_heatmap():
-   return topic_model.visualize_heatmap(n_clusters=20, width=1000, height=1000)
+    fig2 = get_topics_over_time(text, topics, topic_model)
+    st.write(fig2)
 
-# %&
-def topic_model_visualize_term_rank():
-   return topic_model.visualize_term_rank()
+    fig3 = get_topic_keyword_barcharts(topic_model)
+    st.write(fig3)
