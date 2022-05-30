@@ -65,14 +65,13 @@ def topic_model_barchart(topic_model):
 
 # %%
 
-file = None
+df = None
 uploaded_file = st.sidebar.file_uploader('Carica un file .txt')
 st.sidebar.caption('Verifica che il file sia privo di formattazione')
 st.sidebar.markdown("""---""")
 if uploaded_file is not None:
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
-    file = stringio.read()
-    st.write(file)
+    df = stringio.read()
     text, topic_model, topics = get_topic_model(stringio)
     
     fig1 = topic_model_visualize(topic_model)
