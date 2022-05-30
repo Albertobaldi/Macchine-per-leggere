@@ -59,16 +59,16 @@ if filename is not None:
     tm_state.text('Modeling topics... done!')
     
     with st.container():
-    st.write("This is inside the container")
+     st.write("This is inside the container")
 
     fig1 = topic_model_visualize(topic_model)
-    st.write(fig1)
+     st.write(fig1)
     
     fig2 = topic_model_distribution(topic_model)
-    st.write(fig2)
+     st.write(fig2)
     
     fig3 = topic_model_hierarchy(topic_model)
-    st.write(fig3)
+     st.write(fig3)
     
     fig4 = topic_model_barchart(topic_model)
-    st.write(fig4)
+     st.write(fig4)
