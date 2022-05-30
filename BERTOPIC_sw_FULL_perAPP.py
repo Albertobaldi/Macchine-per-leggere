@@ -41,11 +41,14 @@ if uploaded_file is not None:
 # %%
 from sklearn.feature_extraction.text import CountVectorizer
 
+def CountVectorizer()
 vectorizer_model = CountVectorizer(stop_words='italian')
 
+def BERTopic()
 topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
 
 # %%
+def topic_model.fit_transform()
 topics, probs = topic_model.fit_transform(uploaded_file)
 
 # %%
