@@ -66,7 +66,7 @@ elif st.sidebar.button('Load demo data'):
     tm_state.text('Modeling topics... done!')
     
     with st.container():
-    st.write("This is inside the container")
+        st.write("This is inside the container")
 
     fig1 = topic_model_visualize(topic_model)
     st.write(fig1)
