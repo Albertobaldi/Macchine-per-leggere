@@ -5,10 +5,32 @@ import streamlit as st
 nltk.download('stopwords')
 
 # %%
+
+st.set_page_config(
+    page_title="BERTopic",
+    page_icon="🎈",
+)
+
+# %%
+
+def _max_width_():
+    max_width_str = f"max-width: 1400px;"
+    st.markdown(
+        f"""
+    <style>
+    .reportview-container .main .block-container{{
+        {max_width_str}
+    }}
+    </style>    
+    """,
+        unsafe_allow_html=True,
+    )
+
+# %%
 from nltk.corpus import stopwords
 stopwords = stopwords.words("italian")
 
-#%%
+# %%
 
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
