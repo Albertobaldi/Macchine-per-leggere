@@ -44,6 +44,38 @@ def CountVectorizer():
     vectorizer_model = CountVectorizer(stop_words='italian')
     return CountVectorizer()
 
+def preprocess(text_col):
+    """This function will apply NLP preprocessing lambda functions over a pandas series such as df['text'].
+       These functions include converting text to lowercase, removing emojis, expanding contractions, removing punctuation,
+       removing numbers, removing stopwords, lemmatization, etc."""
+    
+    # convert to lowercase
+    text_col = text_col.apply(lambda x: ' '.join([w.lower() for w in x.split()]))
+    
+    # remove emojis
+    text_col = text_col.apply(lambda x: demoji.replace(x, ""))
+    
+    # expand contractions  
+    text_col = text_col.apply(lambda x: ' '.join([contractions.fix(word) for word in x.split()]))
+
+    # remove punctuation
+    text_col = text_col.apply(lambda x: ''.join([i for i in x if i not in string.punctuation]))
+    
+    # remove numbers
+    text_col = text_col.apply(lambda x: ' '.join(re.sub("[^a-zA-Z]+", " ", x).split()))
+
+    # remove stopwords
+    stopwords = [sw for sw in list(nltk.corpus.stopwords.words('english')) + ['thing'] if sw not in ['not']]
+    text_col = text_col.apply(lambda x: ' '.join([w for w in x.split() if w not in stopwords]))
+
+    # lemmatization
+    text_col = text_col.apply(lambda x: ' '.join([WordNetLemmatizer().lemmatize(w) for w in x.split()]))
+
+    # remove short words
+    text_col = text_col.apply(lambda x: ' '.join([w.strip() for w in x.split() if len(w.strip()) >= 3]))
+
+    return text_col
+
 def get_topic_model(df):
     text = dataframe
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
