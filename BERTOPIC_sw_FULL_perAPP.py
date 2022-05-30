@@ -62,26 +62,11 @@ def get_topic_keyword_barcharts(topic_model):
     return topic_model.visualize_barchart(top_n_topics=9, n_words=5, height=800)
 
 df = None
-uploaded_file = st.sidebar.file_uploader('Choose a CSV file')
-st.sidebar.caption('Make sure the csv contains a column titled "date" and a column titled "text"')
+uploaded_file = st.sidebar.file_uploader('Carica un file .txt')
+st.sidebar.caption('Verifica che il file sia privo di formattazione')
 st.sidebar.markdown("""---""")
 if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
-    print(df.head().to_markdown())
-    # st.write(df)
-elif st.sidebar.button('Load demo data'):
-    data_load_state = st.text('Loading data...')
-    df = pd.read_csv('./cleaned_data/medium-suggested-cleaned.csv')
-    data_load_state.text('Loading data... done!')
-    if st.checkbox('Preview the data'):
-        st.subheader('5 rows of raw data')
-        st.write(data[:5])
-
-    # st.write(df.head())
-
-if df is not None:
-    # concatenate title and subtitle columns
-    data_clean_state = st.text('Cleaning data...')
+    text = pd.read_table(uploaded_file,header=None)
     df['text'] = preprocess(df['text'].astype(str))
     cleaned_df = df[['date', 'text']]
     cleaned_df = cleaned_df.dropna(subset=['text'])
