@@ -36,11 +36,11 @@ def _max_width_():
 
 # %%
 
-df = None
+filename = None
 uploaded_file = st.sidebar.file_uploader('Carica un file .txt')
 st.sidebar.caption('Verifica che il file sia privo di formattazione')
 st.sidebar.markdown("""---""")
-if uploaded_file is not None:
+if filename is not None:
     name = 'example'
     ext = 'txt'
 
