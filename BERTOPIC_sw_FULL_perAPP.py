@@ -59,7 +59,9 @@ st.sidebar.caption('Verifica che il file sia privo di formattazione')
 st.sidebar.markdown("""---""")
 if filename is not None:
     with open(filename, 'r', encoding='utf-8') as f:
-        lines = f.readlines()   
+        lines = f.readlines()
+        
+topic_model, topics = get_topic_model(lines)
     
 fig1 = topic_model_visualize(topic_model)
 st.write(fig1)
