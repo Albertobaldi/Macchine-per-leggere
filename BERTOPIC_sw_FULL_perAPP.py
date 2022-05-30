@@ -36,8 +36,8 @@ def _max_width_():
     
 # %%
 
-def get_topic_model(data):
-    text = data
+def get_topic_model(file):
+    text = file
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True)
     topics, probs = topic_model.fit_transform(file)
     freq = topic_model.get_topic_info(); freq.head(5)
