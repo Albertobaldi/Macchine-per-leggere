@@ -73,7 +73,7 @@ if uploaded_file is not None:
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
     file = stringio.read()
     st.write(file)
-    text, topic_model, topics = get_topic_model(data)
+    text, topic_model, topics = get_topic_model(file)
     
     fig1 = topic_model_visualize(topic_model)
     st.write(fig1)
