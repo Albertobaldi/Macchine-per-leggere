@@ -44,9 +44,11 @@ def CountVectorizer():
     vectorizer_model = CountVectorizer(stop_words='italian')
     return CountVectorizer()
 
-def BERTopic():
-    topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
-    return BERTopic()
+def get_topic_model(df):
+    text = df['dataframe'].to_list()
+    topic_model = BERTopic(min_topic_size=len(text) // 100, n_gram_range=(1,3), verbose=False)
+    topics, _ = topic_model.fit_transform(text)
+    return text, topic_model, topics
 
 # %%
 def topic_model_transform():
