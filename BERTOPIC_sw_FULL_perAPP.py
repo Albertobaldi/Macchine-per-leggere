@@ -42,43 +42,43 @@ if uploaded_file is not None:
 from sklearn.feature_extraction.text import CountVectorizer
 
 def CountVectorizer():
-    vectorizer_model = CountVectorizer(stop_words='italian')
+    return vectorizer_model = CountVectorizer(stop_words='italian')
 
 def BERTopic():
-    topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
+    return topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
 
 # %%
 def topic_model.fit_transform():
-    topics, probs = topic_model.fit_transform(uploaded_file)
+   return topics, probs = topic_model.fit_transform(uploaded_file)
 
 # %%
 def topic_model.get_topic_info():
-    freq = topic_model.get_topic_info(); freq.head(5)
+   return freq = topic_model.get_topic_info(); freq.head(5)
 
 # %%
 def topic_model.get_topic():
-    topic_model.get_topic(0)  # Select the most frequent topic
+   return topic_model.get_topic(0)  # Select the most frequent topic
 
 # %%
 def topic_model.visualize_topics():
-    topic_model.visualize_topics()
+   return topic_model.visualize_topics()
 
 # %%
 def topic_model.visualize_distribution():
-    topic_model.visualize_distribution(probs[200], min_probability=0.015)
+   return topic_model.visualize_distribution(probs[200], min_probability=0.015)
 
 # %%
 def topic_model.visualize_hierarchy():
-    topic_model.visualize_hierarchy(top_n_topics=50)
+   return topic_model.visualize_hierarchy(top_n_topics=50)
 
 # %%
 def topic_model.visualize_barchart():
-    topic_model.visualize_barchart(top_n_topics=5)
+   return  topic_model.visualize_barchart(top_n_topics=5)
 
 # %%
 def topic_model.visualize_heatmap():
-    topic_model.visualize_heatmap(n_clusters=20, width=1000, height=1000)
+   return  topic_model.visualize_heatmap(n_clusters=20, width=1000, height=1000)
 
 # %&
 def topic_model.visualize_term_rank():
-    topic_model.visualize_term_rank()
+   return  topic_model.visualize_term_rank()
