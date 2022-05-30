@@ -5,6 +5,9 @@ import streamlit as st
 import pandas as pd
 import io
 from io import StringIO
+import string
+from pandas.compat import StringIO
+from collections import Counter
 nltk.download('stopwords')
 
 # %%
