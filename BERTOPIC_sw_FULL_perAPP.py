@@ -45,13 +45,13 @@ if uploaded_file is not None:
     df = stringio.read()
     
     
-    def get_topic_model(df_ready):
+    def get_topic_model(df):
         topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True)
-        topics, probs = topic_model.fit_transform(df_ready)
+        topics, probs = topic_model.fit_transform(df)
         freq = topic_model.get_topic_info(); freq.head(5)
         return topics, freq
     
-    topic_model, topics = get_topic_model(df_ready)
+    topic_model, topics = get_topic_model(df)
 
     def topic_model_visualize(topic_model):
         return topic_model.visualize_topics()
