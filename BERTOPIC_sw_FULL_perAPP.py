@@ -41,7 +41,7 @@ uploaded_file = st.sidebar.file_uploader('Carica un file .txt')
 st.sidebar.caption('Verifica che il file sia privo di formattazione')
 st.sidebar.markdown("""---""")
 if uploaded_file is not None:
-    df = pd.read_table(uploaded_file, dtype = str)
+    df = open(uploaded_file, 'w')
     
     
     def get_topic_model(df):
