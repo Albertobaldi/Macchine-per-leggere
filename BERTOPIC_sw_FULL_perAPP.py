@@ -5,7 +5,7 @@ nltk.download('stopwords')
 
 # %%
 from nltk.corpus import stopwords
-stopwords = stopwords.words(italian)
+stopwords = stopwords.words("italian")
 
 #%%
 
