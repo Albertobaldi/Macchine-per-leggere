@@ -36,12 +36,11 @@ def _max_width_():
     
 # %%
 
-def get_topic_model(text):
-    text = stringio
+def get_topic_model():
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True)
     topics, probs = topic_model.fit_transform(text)
     freq = topic_model.get_topic_info(); freq.head(5)
-    return text, topics, freq
+    return topics, freq
 
 # %%
 
