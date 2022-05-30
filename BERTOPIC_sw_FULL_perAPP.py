@@ -55,6 +55,9 @@ if filename is not None:
         lines = f.readlines()    
 
     text, dates, topic_model, topics = get_topic_model(lines)
+    
+with st.container():
+    st.write("This is inside the container")
 
     fig1 = topic_model_visualize(topic_model)
     st.write(fig1)
