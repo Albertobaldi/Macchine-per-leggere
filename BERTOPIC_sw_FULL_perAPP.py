@@ -41,7 +41,16 @@ uploaded_file = st.sidebar.file_uploader('Carica un file .txt')
 st.sidebar.caption('Verifica che il file sia privo di formattazione')
 st.sidebar.markdown("""---""")
 if uploaded_file is not None:
-    df = open(uploaded_file, 'w')
+    name = 'example'
+    ext = 'txt'
+
+    filename = uploaded_file'{name}.{ext}'
+
+with open(filename, 'r', encoding='utf-8') as uploaded_files:
+    lines = f.readlines()
+
+    for line in lines:
+        print(line)
     
     
     def get_topic_model(df):
