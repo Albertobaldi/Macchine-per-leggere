@@ -4,6 +4,7 @@ import nltk
 import streamlit as st
 import pandas as pd
 from io import StringIO
+import StringIO as stringio
 nltk.download('stopwords')
 
 # %%
