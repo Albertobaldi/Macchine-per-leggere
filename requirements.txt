@@ -28,8 +28,3 @@ torch>=1.4.0
 flair==0.7
 gensim>=4.0.0
 spacy>=3.0.1
-pytest>=5.4.3
-pytest-cov>=2.6.1
-tensorflow
-tensorflow_hub
-tensorflow_text
