@@ -36,9 +36,9 @@ def _max_width_():
     
 # %%
 
-def get_topic_model(stringio):
+def get_topic_model(df):
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True)
-    topics, probs = topic_model.fit_transform(stringio)
+    topics, probs = topic_model.fit_transform(df)
     freq = topic_model.get_topic_info(); freq.head(5)
     return topics, freq
 
@@ -71,7 +71,7 @@ st.sidebar.markdown("""---""")
 if uploaded_file is not None:
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
     df = stringio.read()
-    text, topic_model, topics = get_topic_model(stringio)
+    topic_model, topics = get_topic_model(df)
     
     fig1 = topic_model_visualize(topic_model)
     st.write(fig1)
