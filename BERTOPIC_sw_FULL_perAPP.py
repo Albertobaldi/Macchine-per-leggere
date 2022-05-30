@@ -35,7 +35,7 @@ stopwords = stopwords.words("italian")
 
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
-    dataframe = open(uploaded_file)
+    dataframe = pd.read_csv(uploaded_file)
     st.write(dataframe)
 
 
