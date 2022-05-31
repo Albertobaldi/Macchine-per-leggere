@@ -57,11 +57,10 @@ def topic_model_hierarchy(topic_model):
 def topic_model_barchart(topic_model):
     return topic_model.visualize_barchart(top_n_topics=5)
     
-df = None
 uploaded_file = st.sidebar.file_uploader('Carica un file .txt')
 st.sidebar.caption('Verifica che il file sia privo di formattazione')
 st.sidebar.markdown("""---""")
-if df is not None:
+if uploaded_file is not None:
     with open(uploaded_file, 'r', encoding='utf-8') as f:
         lines = f.readlines()
        
