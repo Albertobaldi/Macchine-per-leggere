@@ -1,3 +1,4 @@
 bertopic
 wordcloud
 matplotlib
+streamlit
