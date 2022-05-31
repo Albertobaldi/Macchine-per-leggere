@@ -6,7 +6,6 @@ import warnings
 warnings.filterwarnings("ignore")
 import re
 from tqdm import tqdm
-from quickstart import get_service, get_data
 import contractions
 import string
 import demoji
