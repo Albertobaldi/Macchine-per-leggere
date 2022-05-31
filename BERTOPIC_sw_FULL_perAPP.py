@@ -54,5 +54,5 @@ st.sidebar.markdown("""---""")
 if uploaded_file is not None:
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
     filerd = stringio.read()
-    file = st.write(filerd)
+    file = open(filerd, encoding="utf-8").read().split('\n')
     get_topic_model(file)
