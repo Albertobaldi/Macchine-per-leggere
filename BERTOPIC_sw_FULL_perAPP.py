@@ -54,7 +54,6 @@ st.sidebar.markdown("""---""")
 if uploaded_file is not None:
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
     filerd = stringio.read()
-    def stringToList(filrd):
     listRes = list(filerd.split(" "))
     file = listRes
     get_topic_model(file)
