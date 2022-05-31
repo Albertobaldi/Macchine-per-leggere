@@ -53,3 +53,4 @@ st.sidebar.caption('Verifica che il file sia privo di formattazione')
 st.sidebar.markdown("""---""")
 if uploaded_file is not None:
     lines_pro = uploaded_file.read
+    get_topic_model(lines_pro, "yes")
