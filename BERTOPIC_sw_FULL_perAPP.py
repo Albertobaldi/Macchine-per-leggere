@@ -6,9 +6,7 @@ import warnings
 warnings.filterwarnings("ignore")
 import re
 from tqdm import tqdm
-import contractions
 import string
-import demoji
 import nltk
 import io
 from io import StringIO
