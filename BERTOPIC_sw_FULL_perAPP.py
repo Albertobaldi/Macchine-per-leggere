@@ -39,10 +39,10 @@ st.title("BERTopic – Topic modeling e analisi dei temi su un corpus testuale")
 from nltk.corpus import stopwords
 stopwords = stopwords.words('italian')
 
-def get_topic_model(data):
-    text = lines_pro
+def get_topic_model(file):
+    text = file
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True)
-    topics, probs = topic_model.fit_transform(data)
+    topics, probs = topic_model.fit_transform(text)
     freq = topic_model.get_topic_info(); freq.head(5)
     return topics, freq, topic_model
     print(topics)
@@ -52,7 +52,5 @@ uploaded_file = st.sidebar.file_uploader("Scegli un file di testo")
 st.sidebar.caption('Verifica che il file sia privo di formattazione')
 st.sidebar.markdown("""---""")
 if uploaded_file is not None:
-    file = open(uploaded_file)
-    data = file.read()
-    print(data)
-    file.close()
+    file = readline(uploaded_file)
+    get_topic_model(file)
