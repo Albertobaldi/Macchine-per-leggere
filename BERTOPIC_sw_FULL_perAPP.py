@@ -52,5 +52,6 @@ uploaded_file = st.sidebar.file_uploader("Scegli un file di testo")
 st.sidebar.caption('Verifica che il file sia privo di formattazione')
 st.sidebar.markdown("""---""")
 if uploaded_file is not None:
-    file = StringIO.read(uploaded_file)
+    stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
+    file = stringio.read(uploaded_file)
     get_topic_model(file)
