@@ -70,11 +70,11 @@ if st.button('Esegui l’analisi'):
     tm_state.text('Modeling topics... done!')
     
 
-fig1 = topic_model_visualize(topic_model)
+fig1 = topic_model_visualize()
 st.write(fig1)
-fig2 = topic_model_distribution(topic_model)
+fig2 = topic_model_distribution()
 st.write(fig2)
-fig3 = topic_model_hierarchy(topic_model)
+fig3 = topic_model_hierarchy()
 st.write(fig3)
-fig4 = topic_model_barchart(topic_model)
+fig4 = topic_model_barchart()
 st.write(fig4)
