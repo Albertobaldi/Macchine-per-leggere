@@ -54,3 +54,5 @@ if uploaded_file is not None:
     listRes = list(filerd.split(" "))
     file = listRes
     get_topic_model(file)
+    print(topics)
+    print(freq)
