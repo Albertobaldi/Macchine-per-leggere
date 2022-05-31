@@ -47,7 +47,7 @@ def get_topic_model():
     return topics, freq, topic_model
     
 def topic_model_visualize(topic_model):
-    return topic_model.visualize_topics()
+    return topic_model.visualize_topics(topics)
 
 def topic_model_distribution(topic_model):
     return topic_model.visualize_distribution(probs[200], min_probability=0.015)
