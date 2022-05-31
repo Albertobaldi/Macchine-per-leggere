@@ -51,7 +51,7 @@ if uploaded_file is not None:
     listRes = list(filerd.split(" "))
     file = listRes
 
-    if st.button('Processa i dati'):
-        get_topic_model(file)
-        st.write(topics)
-        st.write(freq)
+if st.button('Processa i dati'):
+    get_topic_model(file)
+    st.write(topics)
+    st.write(freq)
