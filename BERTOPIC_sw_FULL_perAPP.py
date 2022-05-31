@@ -40,7 +40,7 @@ from nltk.corpus import stopwords
 stopwords = stopwords.words('italian')
 
 def get_topic_model():
-    text = lines
+    text = lines_pro
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True)
     topics, probs = topic_model.fit_transform(lines)
     freq = topic_model.get_topic_info(); freq.head(5)
