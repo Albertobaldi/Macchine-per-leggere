@@ -52,6 +52,7 @@ uploaded_file = st.sidebar.file_uploader("Scegli un file di testo")
 st.sidebar.caption('Verifica che il file sia privo di formattazione')
 st.sidebar.markdown("""---""")
 if uploaded_file is not None:
-    with open(uploaded_file, 'r', encoding='utf-8') as f:
-        lines = f.readlines()
+    with open(uploaded_file) as file:
+        lines = file.readlines()
+        lines = [line.rstrip() for line in lines]
  
