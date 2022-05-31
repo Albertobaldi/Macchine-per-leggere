@@ -69,14 +69,12 @@ if st.button('Esegui l’analisi'):
     text, dates, topic_model, topics = get_topic_model(lines)
     tm_state.text('Modeling topics... done!')
     
-with st.container():
-    st.write("This is inside the container")
 
-    fig1 = topic_model_visualize(topic_model)
-    st.write(fig1)
-    fig2 = topic_model_distribution(topic_model)
-    st.write(fig2)
-    fig3 = topic_model_hierarchy(topic_model)
-    st.write(fig3)
-    fig4 = topic_model_barchart(topic_model)
-    st.write(fig4)
+fig1 = topic_model_visualize(topic_model)
+st.write(fig1)
+fig2 = topic_model_distribution(topic_model)
+st.write(fig2)
+fig3 = topic_model_hierarchy(topic_model)
+st.write(fig3)
+fig4 = topic_model_barchart(topic_model)
+st.write(fig4)
