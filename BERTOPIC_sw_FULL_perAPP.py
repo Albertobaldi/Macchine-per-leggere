@@ -24,7 +24,7 @@ stopwords = stopwords.words('italian')
 st.set_page_config(
     page_title="BERTopic",
     page_icon="🎈",
-)
+) 
 
 def _max_width_():
     max_width_str = f"max-width: 1400px;"
