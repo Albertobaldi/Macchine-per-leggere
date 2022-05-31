@@ -42,7 +42,7 @@ stopwords = stopwords.words('italian')
 def get_topic_model():
     text = lines_pro
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True)
-    topics, probs = topic_model.fit_transform(lines)
+    topics, probs = topic_model.fit_transform(lines_pro)
     freq = topic_model.get_topic_info(); freq.head(5)
     return topics, freq, topic_model
     print(topics)
