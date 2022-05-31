@@ -1,1 +1,3 @@
 bertopic
+wordcloud
+matplotlib
