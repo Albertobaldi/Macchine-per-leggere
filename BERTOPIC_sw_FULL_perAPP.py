@@ -56,27 +56,7 @@ def topic_model_hierarchy(topic_model):
 
 def topic_model_barchart(topic_model):
     return topic_model.visualize_barchart(top_n_topics=5)
-    
-uploaded_file = st.sidebar.file_uploader(
-            "",
-        key="1",
-        help="To activate 'wide mode', go to the hamburger menu > Settings > turn on 'wide mode'",
-    )
-if uploaded_file is not None:
-    file_container = st.expander("Check your uploaded .csv")
-    shows = pd.read_csv(uploaded_file)
-    uploaded_file.seek(0)
-    file_container.write(shows)
-
-    else:
-        st.info(
-            f"""
-                👆 Upload a .csv file first. Sample to try: [biostats.csv](https://people.sc.fsu.edu/~jburkardt/data/csv/biostats.csv)
-                """
-        )
-
-        st.stop()
-        
+            
 st.sidebar.caption('Verifica che il file sia privo di formattazione')
 st.sidebar.markdown("""---""")
 if uploaded_file is not None:
