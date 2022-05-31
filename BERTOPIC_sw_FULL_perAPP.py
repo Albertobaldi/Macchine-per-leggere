@@ -45,8 +45,8 @@ def get_topic_model(file):
     topics, probs = topic_model.fit_transform(text)
     freq = topic_model.get_topic_info(); freq.head(5)
     return topics, freq, topic_model
-    print(topics)
-    print(freq)
+    st.write(topics)
+    st.write(freq)
             
 uploaded_file = st.sidebar.file_uploader("Scegli un file di testo")
 st.sidebar.caption('Verifica che il file sia privo di formattazione')
@@ -55,3 +55,4 @@ if uploaded_file is not None:
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
     filerd = stringio.read()
     file = st.write(filerd)
+    get_topic_model(file)
