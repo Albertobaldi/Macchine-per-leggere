@@ -43,7 +43,7 @@ def get_topic_model(file):
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True)
     topics, probs = topic_model.fit_transform(file)
     freq = topic_model.get_topic_info(); freq.head(5)
-    return topics, freq, topic_model, topic_model.get_topic(0), topic_model.visualize_topics()
+    return topics, freq, topic_model
             
 uploaded_file = st.sidebar.file_uploader("Scegli un file di testo")
 st.sidebar.caption('Verifica che il file sia privo di formattazione')
