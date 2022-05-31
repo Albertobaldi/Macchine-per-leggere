@@ -66,11 +66,11 @@ if uploaded_file is not None:
         lines = f.readlines()
     
 
-fig1 = topic_model_visualize(topic_model)
+fig1 = topic_model_visualize(get_topic_model)
 st.write(fig1)
-fig2 = topic_model_distribution(topic_model)
+fig2 = topic_model_distribution(get_topic_model)
 st.write(fig2)
-fig3 = topic_model_hierarchy(topic_model)
+fig3 = topic_model_hierarchy(get_topic_model)
 st.write(fig3)
-fig4 = topic_model_barchart(topic_model)
+fig4 = topic_model_barchart(get_topic_model)
 st.write(fig4)
