@@ -48,10 +48,10 @@ def get_topic_model():
     print(topics)
     print(freq)
             
-lines = st.sidebar.file_uploader("Scegli un file di testo")
+uploaded_file = st.sidebar.file_uploader("Scegli un file di testo")
 st.sidebar.caption('Verifica che il file sia privo di formattazione')
 st.sidebar.markdown("""---""")
 if uploaded_file is not None:
-    with open(lines, 'r', encoding='utf-8') as f:
+    with open(uploaded_file, 'r', encoding='utf-8') as f:
         lines = f.readlines()
  
