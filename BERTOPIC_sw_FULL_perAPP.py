@@ -38,7 +38,14 @@ st.title("BERTopic – Topic modeling e analisi dei temi su un corpus testuale")
 
 from nltk.corpus import stopwords
 stopwords = stopwords.words('italian')
-
+            
+uploaded_file = st.sidebar.file_uploader("Scegli un file di testo")
+st.sidebar.caption('Verifica che il file sia privo di formattazione')
+st.sidebar.markdown("""---""")
+if uploaded_file is not None:
+    with open(uploaded_file, 'r', encoding='utf-8') as f:
+        lines = f.readlines()
+       
 def topic_model():
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True)
     topics, probs = topic_model.fit_transform(lines)
@@ -56,18 +63,6 @@ def topic_model_hierarchy():
 
 def topic_model_barchart():
     return topic_model.visualize_barchart(top_n_topics=5)
-            
-uploaded_file = st.sidebar.file_uploader("Scegli un file di testo")
-st.sidebar.caption('Verifica che il file sia privo di formattazione')
-st.sidebar.markdown("""---""")
-if uploaded_file is not None:
-    with open(uploaded_file, 'r', encoding='utf-8') as f:
-        lines = f.readlines()
-       
-if st.button('Esegui l’analisi'):
-    tm_state = st.text('Modeling topics...')
-    text, dates, topic_model, topics = get_topic_model(lines)
-    tm_state.text('Modeling topics... done!')
     
 
 fig1 = topic_model_visualize()
