@@ -16,14 +16,6 @@ from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 from bertopic import BERTopic
 
-from nltk.corpus import stopwords
-stopwords = stopwords.words('italian')
-
-st.set_page_config(
-    page_title="BERTopic",
-    page_icon="🎈",
-) 
-
 def _max_width_():
     max_width_str = f"max-width: 1400px;"
     st.markdown(
@@ -36,6 +28,34 @@ def _max_width_():
     """,
         unsafe_allow_html=True,
     )
+
+st.set_page_config(
+    page_title="BERTopic",
+    page_icon="🎈",
+) 
+
+st.title("BERTopic – Topic modeling e analisi dei temi su un corpus testuale")
+
+from nltk.corpus import stopwords
+stopwords = stopwords.words('italian')
+
+def get_topic_model(lines):
+    topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True)
+    topics, probs = topic_model.fit_transform(df)
+    freq = topic_model.get_topic_info(); freq.head(5)
+    return topics, freq, topic_model
+    
+def topic_model_visualize(topic_model):
+    return topic_model.visualize_topics()
+
+def topic_model_distribution(topic_model):
+    return topic_model.visualize_distribution(probs[200], min_probability=0.015)
+
+def topic_model_hierarchy(topic_model):
+    return topic_model.visualize_hierarchy(top_n_topics=50)
+
+def topic_model_barchart(topic_model):
+    return topic_model.visualize_barchart(top_n_topics=5)
     
 df = None
 uploaded_file = st.sidebar.file_uploader('Carica un file .txt')
@@ -44,27 +64,11 @@ st.sidebar.markdown("""---""")
 if df is not None:
     with open(df, 'r', encoding='utf-8') as f:
         lines = f.readlines()
-        def get_topic_model(lines):
-            topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True)
-            topics, probs = topic_model.fit_transform(lines)
-            freq = topic_model.get_topic_info(); freq.head(5)
-            return topics, freq, topic_model
-    
-        def topic_model_visualize(topic_model):
-            return topic_model.visualize_topics()
-
-        def topic_model_distribution(topic_model):
-            return topic_model.visualize_distribution(probs[200], min_probability=0.015)
-
-        def topic_model_hierarchy(topic_model):
-            return topic_model.visualize_hierarchy(top_n_topics=50)
-
-        def topic_model_barchart(topic_model):
-            return topic_model.visualize_barchart(top_n_topics=5)
+        df.write(lines)
        
 if st.button('Esegui l’analisi'):
     tm_state = st.text('Modeling topics...')
-    text, dates, topic_model, topics = get_topic_model(lines)
+    text, dates, topic_model, topics = get_topic_model(df)
     tm_state.text('Modeling topics... done!')
     
 with st.container():
