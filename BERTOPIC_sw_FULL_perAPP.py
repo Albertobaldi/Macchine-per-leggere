@@ -39,7 +39,7 @@ st.title("BERTopic – Topic modeling e analisi dei temi su un corpus testuale")
 from nltk.corpus import stopwords
 stopwords = stopwords.words('italian')
 
-def get_topic_model():
+def get_topic_model(lines_pro):
     text = lines_pro
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True)
     topics, probs = topic_model.fit_transform(lines_pro)
