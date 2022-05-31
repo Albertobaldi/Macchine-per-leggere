@@ -63,10 +63,10 @@ if df is not None:
     with open(df, 'r', encoding='utf-8') as f:
         lines = f.readlines()    
         
-    if st.button('Esegui l’analisi'):
-        tm_state = st.text('Modeling topics...')
-        text, dates, topic_model, topics = get_topic_model(lines)
-        tm_state.text('Modeling topics... done!')
+if st.button('Esegui l’analisi'):
+    tm_state = st.text('Modeling topics...')
+    text, dates, topic_model, topics = get_topic_model(lines)
+    tm_state.text('Modeling topics... done!')
     
     with st.container():
         st.write("This is inside the container")
