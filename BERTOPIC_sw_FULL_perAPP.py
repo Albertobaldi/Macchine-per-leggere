@@ -61,14 +61,14 @@ if df is not None:
 
             def topic_model_barchart(topic_model):
                 return topic_model.visualize_barchart(top_n_topics=5)
-        
-            if st.button('Esegui l’analisi'):
-                tm_state = st.text('Modeling topics...')
-                text, dates, topic_model, topics = get_topic_model(lines)
-                tm_state.text('Modeling topics... done!')
+       
+if st.button('Esegui l’analisi'):
+    tm_state = st.text('Modeling topics...')
+    text, dates, topic_model, topics = get_topic_model(lines)
+    tm_state.text('Modeling topics... done!')
     
-            with st.container():
-            st.write("This is inside the container")
+with st.container():
+    st.write("This is inside the container")
 
             fig1 = topic_model_visualize(topic_model)
             st.write(fig1)
