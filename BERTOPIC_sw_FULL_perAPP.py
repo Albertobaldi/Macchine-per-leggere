@@ -41,7 +41,7 @@ stopwords = stopwords.words('italian')
 
 def get_topic_model(lines):
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True)
-    topics, probs = topic_model.fit_transform(df)
+    topics, probs = topic_model.fit_transform(lines)
     freq = topic_model.get_topic_info(); freq.head(5)
     return topics, freq, topic_model
     
@@ -62,13 +62,12 @@ uploaded_file = st.sidebar.file_uploader('Carica un file .txt')
 st.sidebar.caption('Verifica che il file sia privo di formattazione')
 st.sidebar.markdown("""---""")
 if df is not None:
-    with open(df, 'r', encoding='utf-8') as f:
+    with open(uploaded_file, 'r', encoding='utf-8') as f:
         lines = f.readlines()
-        df.write(lines)
        
 if st.button('Esegui l’analisi'):
     tm_state = st.text('Modeling topics...')
-    text, dates, topic_model, topics = get_topic_model(df)
+    text, dates, topic_model, topics = get_topic_model(lines)
     tm_state.text('Modeling topics... done!')
     
 with st.container():
