@@ -50,6 +50,8 @@ if uploaded_file is not None:
     filerd = stringio.read()
     listRes = list(filerd.split(" "))
     file = listRes
-    get_topic_model(file)
-    print(topics)
-    print(freq)
+
+    if st.button('Processa i dati'):
+        get_topic_model(file)
+        st.write(topics)
+        st.write(freq)
