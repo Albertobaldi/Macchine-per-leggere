@@ -53,7 +53,7 @@ if uploaded_file is not None:
     file = listRes
 
 if st.button('Processa i dati'):
-    get_topic_model(file)
+    topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True)
     topics, probs = topic_model.fit_transform(file)
     freq = topic_model.get_topic_info(); freq.head(5)
     st.write(topics)
