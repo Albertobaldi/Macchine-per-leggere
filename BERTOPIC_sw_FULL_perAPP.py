@@ -37,7 +37,7 @@ st.set_page_config(
 st.title("BERTopic")
 st.subheader("Topic modeling e analisi dei temi su un corpus testuale")
 
-def get_topic_model(file):
+def get_topic_model():
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True)
     topics, probs = topic_model.fit_transform(file)
     freq = topic_model.get_topic_info(); freq.head(5)
