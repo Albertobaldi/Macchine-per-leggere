@@ -57,4 +57,4 @@ if st.button('Processa i dati'):
     topic_model.visualize_topics()
     topic_model.visualize_distribution(probs[200], min_probability=0.015)
     topic_model.visualize_hierarchy(top_n_topics=50)
-    topic_model.visualize_barchart(top_n_topics=5)
+    topic_model.visualize_barchart(top_n_topics=5) 
