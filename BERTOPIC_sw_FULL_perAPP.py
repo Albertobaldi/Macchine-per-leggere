@@ -54,5 +54,7 @@ if uploaded_file is not None:
 
 if st.button('Processa i dati'):
     get_topic_model(file)
+    topics, probs = topic_model.fit_transform(file)
+    freq = topic_model.get_topic_info(); freq.head(5)
     st.write(topics)
     st.write(freq)
