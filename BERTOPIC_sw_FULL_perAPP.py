@@ -37,9 +37,11 @@ st.set_page_config(
 st.title("BERTopic")
 st.subheader("Topic modeling e analisi dei temi su un corpus testuale")
 
-def topic_model(file):
+def get_topic_model(file):
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True)
-    return topic_model
+    topics, probs = topic_model.fit_transform(file)
+    freq = topic_model.get_topic_info(); freq.head(5)
+    return topics, freq, topic_model
             
 uploaded_file = st.sidebar.file_uploader("Scegli un file di testo")
 st.sidebar.caption('Verifica che il file sia privo di formattazione')
@@ -51,10 +53,6 @@ if uploaded_file is not None:
     file = listRes
 
 if st.button('Processa i dati'):
-    topic_model(file)
-    topics, probs = topic_model.fit_transform(file)
-    topic_model.get_topic(0)
-    topic_model.visualize_topics()
-    topic_model.visualize_distribution(probs[200], min_probability=0.015)
-    topic_model.visualize_hierarchy(top_n_topics=50)
-    topic_model.visualize_barchart(top_n_topics=5) 
+    get_topic_model(file)
+    st.write(topics)
+    st.write(freq)
