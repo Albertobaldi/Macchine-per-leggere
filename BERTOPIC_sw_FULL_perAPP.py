@@ -37,7 +37,7 @@ st.set_page_config(
 st.title("BERTopic")
 st.subheader("Topic modeling e analisi dei temi su un corpus testuale")
 
-def get_topic_model():
+def topic_model():
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True)
     return topic_model
             
@@ -51,7 +51,7 @@ if uploaded_file is not None:
     file = listRes
 
 if st.button('Processa i dati'):
-    topic_model = get_topic_model()
+    topic_model()
     topics, probs = topic_model.fit_transform(file)
     topic_model.get_topic(0)
     topic_model.visualize_topics()
