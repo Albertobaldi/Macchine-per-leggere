@@ -51,7 +51,7 @@ if uploaded_file is not None:
     file = listRes
 
 if st.button('Processa i dati'):
-    get_topic_model()
+    topic_model = get_topic_model()
     topics, probs = topic_model.fit_transform(file)
     topic_model.get_topic(0)
     topic_model.visualize_topics()
