@@ -34,7 +34,8 @@ st.set_page_config(
     page_icon="🎈",
 ) 
 
-st.title("BERTopic – Topic modeling e analisi dei temi su un corpus testuale")
+st.title("BERTopic")
+st.subheader("Topic modeling e analisi dei temi su un corpus testuale")
 
 def get_topic_model(file):
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True)
