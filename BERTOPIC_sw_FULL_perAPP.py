@@ -53,6 +53,6 @@ if uploaded_file is not None:
     file = listRes
 
 if st.button('Processa i dati'):
-    get_topic_model(file)
+    get_topic_model()
     st.write(topics)
     st.write(freq)
