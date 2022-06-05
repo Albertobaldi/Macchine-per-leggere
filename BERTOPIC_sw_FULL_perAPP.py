@@ -56,6 +56,7 @@ if st.button('Processa i dati'):
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True)
     topics, probs = topic_model.fit_transform(file)
     freq = topic_model.get_topic_info(); freq.head(5)
-    topic_model.get_topic(0)
+    get = topic_model.get_topic(0)
     st.write(topics)
     st.write(freq)
+    st.write(get)
