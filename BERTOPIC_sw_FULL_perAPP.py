@@ -54,5 +54,8 @@ if uploaded_file is not None:
 
 if st.button('Processa i dati'):
     topics, freq = get_topic_model()
-    st.write(topics)
-    st.write(freq)
+    topic_model.get_topic(0)
+    topic_model.visualize_topics()
+    topic_model.visualize_distribution(probs[200], min_probability=0.015)
+    topic_model.visualize_hierarchy(top_n_topics=50)
+    topic_model.visualize_barchart(top_n_topics=5)
