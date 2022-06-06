@@ -8,6 +8,7 @@ import re
 from tqdm import tqdm
 import string
 import nltk
+nltk.download('stopwords')
 import io
 from io import StringIO
 import string
