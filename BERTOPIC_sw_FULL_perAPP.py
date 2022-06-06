@@ -69,13 +69,14 @@ st.sidebar.markdown("""---""")
 if uploaded_file is not None:
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
     filerd = stringio.read()
-    listRes = list(filerd.splitlines())
+    listRes = list(filerd.split(" "))
     file = listRes
 
 if st.button('Processa i dati'):
     st.write("Il vostro file è in elaborazione. Il tempo impiegato nell’analisi dei topic può variare a seconda delle dimensioni del file di testo.")
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
     topics, probs = topic_model.fit_transform(file)
+    st.write(listRes)
     freq = topic_model.get_topic_info(); freq.head(5)
     get = topic_model.get_topics()
     fig = topic_model.visualize_topics()
