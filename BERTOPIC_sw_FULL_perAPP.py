@@ -69,8 +69,8 @@ st.sidebar.markdown("""---""")
 if uploaded_file is not None:
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
     filerd = stringio.read()
-    filestr = [line.rstrip('\n') for line in filerd]
-    file = filestr
+    listRes = list(filerd.splitlines())
+    file = listRes
 
 if st.button('Processa i dati'):
     st.write("Il vostro file è in elaborazione. Il tempo impiegato nell’analisi dei topic può variare a seconda delle dimensioni del file di testo.")
