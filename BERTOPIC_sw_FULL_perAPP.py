@@ -99,8 +99,7 @@ def visualize_distribution(topic_model,
             font_family="Rockwell"
         ),
     )
-
-return fig
+    return fig
             
 uploaded_file = st.sidebar.file_uploader("Scegli un file di testo")
 st.sidebar.caption('Verifica che il file sia privo di formattazione')
