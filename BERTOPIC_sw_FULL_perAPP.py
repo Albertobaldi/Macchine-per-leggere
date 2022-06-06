@@ -46,7 +46,6 @@ st.subheader("Topic modeling e analisi dei temi su un corpus testuale")
 from sklearn.feature_extraction.text import CountVectorizer
 from nltk.corpus import stopwords
 
-@st.cache
 nltk.download('stopwords')
 
 final_stopwords_list = stopwords.words('italian')
