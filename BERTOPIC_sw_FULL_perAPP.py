@@ -50,9 +50,11 @@ nltk.download('stopwords')
 
 final_stopwords_list = stopwords.words('italian')
 
+vectorizer_model = CountVectorizer(final_stopwords_list)
+
 @st.cache
 def get_topic_model(file):
-    topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=final_stopwords_list)
+    topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
     topics, probs = topic_model.fit_transform(file)
     freq = topic_model.get_topic_info(); freq.head(5)
     return topics, freq, topic_model
