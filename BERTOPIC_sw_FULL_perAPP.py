@@ -78,6 +78,6 @@ if st.button('Processa i dati'):
     get = topic_model.get_topics()
     fig = topic_model.visualize_topics()
     info = topic_model.get_topic_info()
-    st.table(get)
-    st.table(info)
+    st.write(get)
+    st.write(info)
     st.plotly_chart(fig, use_container_width=False)
