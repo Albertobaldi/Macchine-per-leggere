@@ -80,5 +80,7 @@ if st.button('Processa i dati'):
     get = topic_model.get_topics()
     fig = topic_model.visualize_topics()
     info = topic_model.get_topic_info()
+    top = topic_model.visualize_barchart(top_n_topics=5)
     st.write(info)
-    st.plotly_chart(fig, use_container_width=False)
+    st.plotly_chart(top, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True)
