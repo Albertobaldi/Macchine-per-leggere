@@ -69,6 +69,7 @@ st.sidebar.markdown("""---""")
 if uploaded_file is not None:
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
     filerd = stringio.read()
+    listRes = list(filerd.splitlines())
     file = filerd
 
 if st.button('Processa i dati'):
