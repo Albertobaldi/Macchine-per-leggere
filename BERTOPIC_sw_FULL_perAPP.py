@@ -71,9 +71,13 @@ if uploaded_file is not None:
     file = listRes
 
 if st.button('Processa i dati'):
+    st.write("Il vostro file è in elaborazione. Il tempo impiegato nell’analisi dei topic può variare a seconda delle dimensioni del file di testo.")
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
     topics, probs = topic_model.fit_transform(file)
     freq = topic_model.get_topic_info(); freq.head(5)
-    get = topic_model.get_topic(0)
+    get = topic_model.get_topic()
     fig = topic_model.visualize_topics()
+    info = topic_model.get_topic_info()
+    st.table(get)
+    st.table(info)
     st.plotly_chart(fig, use_container_width=False)
