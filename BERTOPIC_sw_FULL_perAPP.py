@@ -70,4 +70,6 @@ if st.button('Processa i dati'):
     topics, probs = topic_model.fit_transform(file)
     freq = topic_model.get_topic_info(); freq.head(5)
     get = topic_model.get_topic(0)
+    visualize = topic_model.visualize_distribution(probs[200], min_probability=0.015)
     st.write(get)
+    st.write(visualize)
