@@ -43,9 +43,8 @@ from sklearn.feature_extraction.text import CountVectorizer
 from nltk.corpus import stopwords
 
 final_stopwords_list = stopwords.words('italian')
-tfidf_vectorizer = TfidfVectorizer(max_df=0.8,
+tfidf_vectorizer = TfidfVectorizer(max_df=0.5,
   max_features=200000,
-  min_df=0.2,
   stop_words=final_stopwords_list,
   use_idf=True)
 
