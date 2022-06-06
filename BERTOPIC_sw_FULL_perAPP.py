@@ -49,16 +49,10 @@ from nltk.corpus import stopwords
 nltk.download('stopwords')
 
 final_stopwords_list = stopwords.words('italian')
-tfidf_vectorizer = TfidfVectorizer(max_df=0.5,
-  max_features=200000,
-  stop_words=final_stopwords_list,
-  use_idf=True)
-
-vectorizer_model = tfidf_vectorizer
 
 @st.cache
 def get_topic_model(file):
-    topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
+    topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=final_stopwords_list)
     topics, probs = topic_model.fit_transform(file)
     freq = topic_model.get_topic_info(); freq.head(5)
     return topics, freq, topic_model
