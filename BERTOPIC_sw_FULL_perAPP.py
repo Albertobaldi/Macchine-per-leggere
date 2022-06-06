@@ -68,7 +68,7 @@ st.sidebar.caption('Verifica che il file sia privo di formattazione')
 st.sidebar.markdown("""---""")
 if uploaded_file is not None:
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
-    filerd = stringio.read("r")
+    filerd = stringio.open()
     filestr = [line.rstrip('\n') for line in filerd]
     file = filestr
 
