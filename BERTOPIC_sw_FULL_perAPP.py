@@ -8,7 +8,6 @@ import re
 from tqdm import tqdm
 import string
 import nltk
-nltk.download('stopwords')
 import io
 from io import StringIO
 import string
@@ -47,6 +46,9 @@ st.subheader("Topic modeling e analisi dei temi su un corpus testuale")
 from sklearn.feature_extraction.text import CountVectorizer
 from nltk.corpus import stopwords
 
+@st.cache
+nltk.download('stopwords')
+
 final_stopwords_list = stopwords.words('italian')
 tfidf_vectorizer = TfidfVectorizer(max_df=0.5,
   max_features=200000,
@@ -55,6 +57,7 @@ tfidf_vectorizer = TfidfVectorizer(max_df=0.5,
 
 vectorizer_model = tfidf_vectorizer
 
+@st.cache
 def get_topic_model(file):
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
     topics, probs = topic_model.fit_transform(file)
@@ -78,6 +81,5 @@ if st.button('Processa i dati'):
     get = topic_model.get_topics()
     fig = topic_model.visualize_topics()
     info = topic_model.get_topic_info()
-    st.write(get)
     st.write(info)
     st.plotly_chart(fig, use_container_width=False)
