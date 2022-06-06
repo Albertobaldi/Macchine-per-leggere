@@ -60,46 +60,6 @@ def get_topic_model(file):
     topics, probs = topic_model.fit_transform(file)
     freq = topic_model.get_topic_info(); freq.head(5)
     return topics, freq, topic_model
-
-def visualize_distribution(topic_model,
-                           probabilities: np.ndarray,
-                           min_probability: float = 0.015,
-                           width: int = 800,
-                           height: int = 600) -> go.Figure:
-    fig = go.Figure(go.Bar(
-        x=vals,
-        y=labels,
-        marker=dict(
-            color='#C8D2D7',
-            line=dict(
-                color='#6E8484',
-                width=1),
-        ),
-        orientation='h')
-    )
-
-    fig.update_layout(
-        xaxis_title="Probability",
-        title={
-            'text': "<b>Topic Probability Distribution",
-            'y': .95,
-            'x': 0.5,
-            'xanchor': 'center',
-            'yanchor': 'top',
-            'font': dict(
-                size=22,
-                color="Black")
-        },
-        template="simple_white",
-        width=width,
-        height=height,
-        hoverlabel=dict(
-            bgcolor="white",
-            font_size=16,
-            font_family="Rockwell"
-        ),
-    )
-return fig
             
 uploaded_file = st.sidebar.file_uploader("Scegli un file di testo")
 st.sidebar.caption('Verifica che il file sia privo di formattazione')
@@ -115,5 +75,5 @@ if st.button('Processa i dati'):
     topics, probs = topic_model.fit_transform(file)
     freq = topic_model.get_topic_info(); freq.head(5)
     get = topic_model.get_topic(0)
-    topic_model.visualize_distribution(probs[200], min_probability=0.015)
+    fig = topic_model.visualize_distribution(probs[200], min_probability=0.015)
     st.plotly_chart(fig, use_container_width=True)
