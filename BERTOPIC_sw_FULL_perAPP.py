@@ -66,41 +66,41 @@ def visualize_distribution(topic_model,
                            min_probability: float = 0.015,
                            width: int = 800,
                            height: int = 600) -> go.Figure:
-fig = go.Figure(go.Bar(
-    x=vals,
-    y=labels,
-    marker=dict(
-        color='#C8D2D7',
-        line=dict(
-            color='#6E8484',
-            width=1),
+    fig = go.Figure(go.Bar(
+        x=vals,
+        y=labels,
+        marker=dict(
+            color='#C8D2D7',
+            line=dict(
+                color='#6E8484',
+                width=1),
         ),
         orientation='h')
     )
 
-fig.update_layout(
-    xaxis_title="Probability",
-    title={
-        'text': "<b>Topic Probability Distribution",
-        'y': .95,
-        'x': 0.5,
-        'xanchor': 'center',
-        'yanchor': 'top',
-        'font': dict(
-            size=22,
-            color="Black")
-    },
-    template="simple_white",
-    width=width,
-    height=height,
-    hoverlabel=dict(
-        bgcolor="white",
-        font_size=16,
-        font_family="Rockwell"
-    ),
-)
+    fig.update_layout(
+        xaxis_title="Probability",
+        title={
+            'text': "<b>Topic Probability Distribution",
+            'y': .95,
+            'x': 0.5,
+            'xanchor': 'center',
+            'yanchor': 'top',
+            'font': dict(
+                size=22,
+                color="Black")
+        },
+        template="simple_white",
+        width=width,
+        height=height,
+        hoverlabel=dict(
+            bgcolor="white",
+            font_size=16,
+            font_family="Rockwell"
+        ),
+    )
 
-return fig
+    return fig
             
 uploaded_file = st.sidebar.file_uploader("Scegli un file di testo")
 st.sidebar.caption('Verifica che il file sia privo di formattazione')
