@@ -14,6 +14,7 @@ from io import StringIO
 import string
 from collections import Counter
 from wordcloud import WordCloud
+from sklearn.feature_extraction.text import TfidfVectorizer
 import matplotlib.pyplot as plt
 from bertopic import BERTopic
 
