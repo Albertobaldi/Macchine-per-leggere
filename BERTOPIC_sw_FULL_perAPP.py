@@ -72,4 +72,4 @@ if st.button('Processa i dati'):
     get = topic_model.get_topic(0)
     visualize = topic_model.visualize_distribution(probs[200], min_probability=0.015)
     st.write(get)
-    st.write(visualize)
+    st.plotly_chart(visualize, use_container_width=True)
