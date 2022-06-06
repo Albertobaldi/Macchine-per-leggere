@@ -50,7 +50,7 @@ nltk.download('stopwords')
 
 final_stopwords_list = stopwords.words('italian')
 
-vectorizer_model = CountVectorizer(final_stopwords_list)
+vectorizer_model = CountVectorizer(stop_words = final_stopwords_list)
 
 @st.cache
 def get_topic_model(file):
