@@ -75,5 +75,5 @@ if st.button('Processa i dati'):
     topics, probs = topic_model.fit_transform(file)
     freq = topic_model.get_topic_info(); freq.head(5)
     get = topic_model.get_topic(0)
-    fig = topic_model.visualize_distribution(probs[200], min_probability=0.015)
+    fig = topic_model.visualize_barchart()
     st.plotly_chart(fig, use_container_width=True)
