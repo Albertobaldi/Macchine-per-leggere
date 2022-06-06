@@ -47,9 +47,7 @@ tfidf_vectorizer = TfidfVectorizer(max_df=0.8,
   max_features=200000,
   min_df=0.2,
   stop_words=final_stopwords_list,
-  use_idf=True,
-  tokenizer=tokenize_and_stem,
-  ngram_range=(1,3))
+  use_idf=True)
 
 vectorizer_model = tfidf_vectorizer
 
