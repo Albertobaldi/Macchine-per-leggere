@@ -81,6 +81,6 @@ if st.button('Processa i dati'):
     st.plotly_chart(distribution, use_container_width=True)
     
 query = st.text_input('Cerca topic per parole chiave')
-    if not query = 'Cerca topic per parola chiave'
-    similar_topics = topic_model.find_topics(query, top_n=5)
-    st.write('I cinque topic più vicini alla parola inserita sono', similar_topics)
+if not query = 'Cerca topic per parola chiave':
+similar_topics = topic_model.find_topics(query, top_n=5)
+st.write('I cinque topic più vicini alla parola inserita sono', similar_topics)
