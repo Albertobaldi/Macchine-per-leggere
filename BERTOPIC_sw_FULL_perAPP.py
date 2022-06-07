@@ -48,7 +48,6 @@ from nltk.corpus import stopwords
 
 nltk.download('stopwords')
 
-def stop_words:
 stopwords = st.sidebar.text_input("Inserisci una lista di stopwords, tra apici doppi e separate da una virgola", "", placeholder="\"parola1\", \"parola2\", \"parola3\"")
 if stopwords is not None:
     final_stopwords_list = stopwords
