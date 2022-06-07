@@ -46,10 +46,9 @@ st.subheader("Topic modeling e analisi dei temi su un corpus testuale")
 from sklearn.feature_extraction.text import CountVectorizer
 from nltk.corpus import stopwords
 
-nltk.download('stopwords')
-
 sw = st.sidebar.text_input("Inserisci una lista di stopwords, tra apici doppi e separate da una virgola", "", placeholder="\"parola1\", \"parola2\", \"parola3\"")
 
+nltk.download('stopwords')
 final_stopwords_list = stopwords.words('italian')
 newStopWords = sw
 final_stopwords_list.extend(newStopWords)
