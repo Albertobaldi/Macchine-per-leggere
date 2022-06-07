@@ -72,11 +72,11 @@ if st.button('Processa i dati'):
     st.write("Il vostro file è in elaborazione. Il tempo impiegato nell’analisi dei topic può variare a seconda delle dimensioni del file di testo.")
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
     topics, probs = topic_model.fit_transform(file)
-    if st.button('Mostra i dieci topic più frequenti e la loro distribuzione nel corpus')
+    if st.button('Mostra i dieci topic più frequenti e la loro distribuzione nel corpus'):
         freq = topic_model.get_topic_info(); freq.head(10)
         st.write(info)
     get = topic_model.get_topics()
     info = topic_model.get_topic_info()
-    if st.button('Mostra i grafici dei dieci topic più frequenti')
+    if st.button('Mostra i grafici dei dieci topic più frequenti'):
         top = topic_model.visualize_barchart(top_n_topics=10)
         st.plotly_chart(top, use_container_width=True)
