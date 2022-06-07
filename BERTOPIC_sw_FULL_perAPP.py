@@ -49,12 +49,8 @@ from nltk.corpus import stopwords
 nltk.download('stopwords')
 
 sw = st.sidebar.text_input("Inserisci una lista di stopwords, tra apici doppi e separate da una virgola", "", placeholder="\"parola1\", \"parola2\", \"parola3\"")
-if sw is not None:
-    final_stopwords_list = sw
-    vectorizer_model = CountVectorizer(stop_words = sw)
-if sw is None:
-    final_stopwords_list = stopwords.words('italian')
-    vectorizer_model = CountVectorizer(stop_words = final_stopwords_list)
+final_stopwords_list = sw
+vectorizer_model = CountVectorizer(stop_words = sw)
 
 @st.cache
 def get_topic_model(file):
