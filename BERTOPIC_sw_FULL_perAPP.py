@@ -75,12 +75,10 @@ if st.button('Processa i dati'):
     freq = topic_model.get_topic_info(); freq.head(10)
     info = topic_model.get_topic_info()
     top = topic_model.visualize_barchart(top_n_topics=10)
-    distanza = topic_model.visualize_topics()
     distribution = topic_model.visualize_distribution(probs[100], min_probability=0.015)
     st.write(info)
     st.plotly_chart(top, use_container_width=True)
     st.plotly_chart(distribution, use_container_width=True)
-    st.plotly_chart(distanza, use_container_width=True)
     
     query = st.text_input('Cerca topic per parole chiave')
     similar_topics = topic_model.find_topics(query, top_n=5)
