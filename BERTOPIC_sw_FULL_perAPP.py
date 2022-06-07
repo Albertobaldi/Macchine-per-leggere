@@ -18,6 +18,8 @@ import matplotlib.pyplot as plt
 from bertopic import BERTopic
 import itertools
 from typing import List
+from sklearn.feature_extraction.text import CountVectorizer
+from nltk.corpus import stopwords
 
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
@@ -42,9 +44,6 @@ st.set_page_config(
 
 st.title("BERTopic")
 st.subheader("Topic modeling e analisi dei temi su un corpus testuale")
-
-from sklearn.feature_extraction.text import CountVectorizer
-from nltk.corpus import stopwords
 
 sw = st.sidebar.text_input("Inserisci una lista di stopwords, tra apici doppi e separate da una virgola", "", placeholder="\"parola1\", \"parola2\", \"parola3\"")
 
