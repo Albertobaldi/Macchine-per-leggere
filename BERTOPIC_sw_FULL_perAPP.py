@@ -45,7 +45,7 @@ nltk.download('stopwords')
 final_stopwords = st.sidebar.text_input("Inserisci una lista di stopwords, tra apici singoli e separate da una virgola", "[]", placeholder="\'parola1\', \'parola2\', \'parola3\'")
 if final_stopwords is not None:
     final_stopwords_list = stopwords.words('italian')
-else
+else:
     final_stopwords_list = final_stopwords
 vectorizer_model = CountVectorizer(stop_words = final_stopwords_list)
 
