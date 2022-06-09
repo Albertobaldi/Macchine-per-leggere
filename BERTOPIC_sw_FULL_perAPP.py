@@ -43,7 +43,7 @@ st.title("BERTopic")
 st.subheader("Topic modeling e analisi dei temi su un corpus testuale")
 from sklearn.feature_extraction.text import CountVectorizer
 
-final_stopwords = st.sidebar.text_input("Inserisci una lista di stopwords, separate da una virgola", "", placeholder="parola1, parola2, parola3")
+final_stopwords = st.sidebar.text_input("Inserisci una lista di stopwords, separate da una virgola (es. \"parola1, parola2, parola3\")", "")
 if final_stopwords is not None:
     final_stopwords_list = final_stopwords.split(', ')
 else:
