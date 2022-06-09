@@ -69,7 +69,7 @@ if st.button('Processa i dati'):
     freq = topic_model.get_topic_info(); freq.head(10)
     info = topic_model.get_topic_info()
     top = topic_model.visualize_barchart(top_n_topics=10)
-    distribution = topic_model.visualize_distribution(probs[100], min_probability=0.015)
+    distribution = topic_model.visualize_distribution(probs[100], min_probability=0.0005)
     st.write(info)
     st.plotly_chart(top, use_container_width=True)
     st.plotly_chart(distribution, use_container_width=True)
