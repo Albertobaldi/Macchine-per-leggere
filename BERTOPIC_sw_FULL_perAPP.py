@@ -45,6 +45,9 @@ from sklearn.feature_extraction.text import CountVectorizer
 
 final_stopwords = st.sidebar.text_input("Inserisci una lista di stopwords, separate da una virgola (es. \"parola1, parola2, parola3\")", "")
 final_stopwords_list = stopwords.words('italian')
+if final_stopwords is not None:
+    final_stopwords_appen = final_stopwords.split(', ')
+final_stopwords_list.append(final_stopwords_appen)
     
 vectorizer_model = CountVectorizer(stop_words=final_stopwords_list)
             
