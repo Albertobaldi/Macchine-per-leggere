@@ -47,13 +47,6 @@ final_stopwords = st.sidebar.text_input("Inserisci una lista di stopwords, separ
 final_stopwords_list = stopwords.words('italian')
     
 vectorizer_model = CountVectorizer(stop_words=final_stopwords_list)
-
-@st.cache
-def get_topic_model(file):
-    topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
-    topics, probs = topic_model.fit_transform(file)
-    freq = topic_model.get_topic_info(); freq.head(5)
-    return topics, freq, topic_model
             
 uploaded_file = st.sidebar.file_uploader("Scegli un file di testo")
 st.sidebar.caption('Verifica che il file sia privo di formattazione. Si raccomanda di convertire ogni fine di paragrafo in interruzione di linea (\\n): così facendo, l’algoritmo potrà suddividere il testo in paragrafi')
@@ -63,7 +56,8 @@ if uploaded_file is not None:
     file = stringio.read().split('\n')
 if st.button('Processa i dati'):
     st.write("Il vostro file è in elaborazione. Il tempo impiegato nell’analisi dei topic può variare a seconda delle dimensioni del file di testo.")
-    get_topic_model(file)
+    topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
+    topics, probs = topic_model.fit_transform(file)
     freq = topic_model.get_topic_info(); freq.head(10)
     info = topic_model.get_topic_info()
     top = topic_model.visualize_barchart(top_n_topics=10)
@@ -71,11 +65,3 @@ if st.button('Processa i dati'):
     st.write(info)
     st.plotly_chart(top, use_container_width=True)
     st.plotly_chart(distribution, use_container_width=True)
-
-parola = st.text_input('Cerca un topic per una parola')
-if parola is not None:
-    topics = topic_model.find_topics(parola)
-    st.write(topics)
-    st.button('Visualizza le parti del testo in cui il topic è più presente')
-    docs = topic_model.get_representative_docs(topics)
-    st.write(docs)
