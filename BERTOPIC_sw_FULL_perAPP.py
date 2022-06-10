@@ -20,6 +20,7 @@ import itertools
 from typing import List
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+@st.cache
 from nltk.corpus import stopwords
 nltk.download('stopwords')
 
