@@ -49,7 +49,7 @@ if final_stopwords is not None:
     final_stopwords_appen = final_stopwords.split(', ')
 final_stopwords_list.append(final_stopwords_appen)
     
-vectorizer_model = CountVectorizer(stop_words = final_stopwords_list)
+vectorizer_model = CountVectorizer(stop_words=final_stopwords_list)
 
 @st.cache
 def get_topic_model(file):
