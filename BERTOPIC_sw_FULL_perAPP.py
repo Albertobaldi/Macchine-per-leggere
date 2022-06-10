@@ -79,4 +79,6 @@ if st.button('Processa i dati'):
     if parola is not None:
         topics = topic_model.find_topics(parola)
         st.write(topics)
-  
+        st.button('Visualizza le parti del testo in cui il topic è più presente')
+            docs = topic_model.get_representative_docs(topics)
+            st.write(docs)
