@@ -80,5 +80,5 @@ if st.button('Processa i dati'):
         topics = topic_model.find_topics(parola)
         st.write(topics)
         st.button('Visualizza le parti del testo in cui il topic è più presente')
-            docs = topic_model.get_representative_docs(topics)
-            st.write(docs)
+        docs = topic_model.get_representative_docs(topics)
+        st.write(docs)
