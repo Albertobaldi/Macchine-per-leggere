@@ -20,9 +20,8 @@ import itertools
 from typing import List
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-@st.cache
-    from nltk.corpus import stopwords
-    nltk.download('stopwords')
+from nltk.corpus import stopwords
+nltk.download('stopwords')
 
 def _max_width_():
     max_width_str = f"max-width: 1400px;"
