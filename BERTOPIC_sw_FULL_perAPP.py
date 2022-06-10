@@ -59,7 +59,7 @@ def get_topic_model(file):
     return topics, freq, topic_model
             
 uploaded_file = st.sidebar.file_uploader("Scegli un file di testo")
-st.sidebar.caption('Verifica che il file sia privo di formattazione')
+st.sidebar.caption('Verifica che il file sia privo di formattazione. Si raccomanda di convertire ogni fine di paragrafo in interruzione di linea (\\n): così facendo, l’algoritmo potrà suddividere il testo in paragrafi')
 st.sidebar.markdown("""---""")
 if uploaded_file is not None:
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
@@ -75,3 +75,11 @@ if st.button('Processa i dati'):
     st.write(info)
     st.plotly_chart(top, use_container_width=True)
     st.plotly_chart(distribution, use_container_width=True)
+
+    parola = st.text_input('Cerca un topic per una parola')
+    if parola is not None:
+        topics = topic_model.find_topics(parola)
+        st.write(topics)
+        st.button('Visualizza le parti del testo in cui il topic è più presente')
+        docs = topic_model.get_representative_docs(topics)
+        st.write(docs)
