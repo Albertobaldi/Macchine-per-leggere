@@ -69,8 +69,8 @@ if st.button('Processa i dati'):
     st.write(info)
     st.plotly_chart(top, use_container_width=True)
     st.plotly_chart(distribution, use_container_width=True)
-        parola = st.text_input('Cerca un topic per una parola')
-            if parola is not None:
+    parola = st.text_input('Cerca un topic per una parola')
+        if parola is not None:
             topics = topic_model.find_topics(parola)
             st.write(topics)
             st.button('Visualizza le parti del testo in cui il topic è più presente')
