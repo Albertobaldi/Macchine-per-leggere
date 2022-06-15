@@ -45,6 +45,9 @@ from sklearn.feature_extraction.text import CountVectorizer
 
 if 'final_stopwords' not in st.session_state:
 	st.session_state.final_stopwords = False
+	
+if 'topic_model' not in st.session_state:
+	st.session_state.topic_model = False
 
 final_stopwords = st.sidebar.text_input("Inserisci una lista di stopwords, separate da una virgola (es. \"parola1, parola2, parola3\")", "")
 final_stopwords_list = stopwords.words('italian')
@@ -65,6 +68,7 @@ if uploaded_file is not None:
 if st.button('Processa i dati'):
     st.write("Il vostro file è in elaborazione. Il tempo impiegato nell’analisi dei topic può variare a seconda delle dimensioni del file di testo.")
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
+    st.session_state.topic_model = True
     topics, probs = topic_model.fit_transform(file)
     freq = topic_model.get_topic_info(); freq.head(10)
     info = topic_model.get_topic_info()
@@ -75,6 +79,7 @@ if st.button('Processa i dati'):
     st.plotly_chart(distribution, use_container_width=True)
 parola = st.text_input('Cerca un topic per una parola')
 if parola is not None:
+    topic_model = session_state.topic_model
     topics = topic_model.find_topics(parola)
     st.write(topics)
     st.button('Visualizza le parti del testo in cui il topic è più presente')
