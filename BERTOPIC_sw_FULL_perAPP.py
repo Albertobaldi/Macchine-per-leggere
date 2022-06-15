@@ -46,9 +46,6 @@ from sklearn.feature_extraction.text import CountVectorizer
 
 if 'final_stopwords' not in st.session_state:
 	st.session_state.final_stopwords = False
-	
-if 'topic_model' not in st.session_state:
-	st.session_state.topic_model = False
 
 final_stopwords = st.sidebar.text_input("Inserisci una lista di stopwords, separate da una virgola (es. \"parola1, parola2, parola3\")", "")
 final_stopwords_list = stopwords.words('italian')
@@ -78,12 +75,4 @@ if st.button('Processa i dati'):
     st.write(info)
     st.plotly_chart(top, use_container_width=True)
     st.plotly_chart(distribution, use_container_width=True)
-parola = st.text_input('Cerca un topic per una parola')
-if parola is not None:
-    topic_model = session_state.topic_model
-    topics = topic_model.find_topics(parola)
-    st.write(topics)
-    st.button('Visualizza le parti del testo in cui il topic è più presente')
-    docs = topic_model.get_representative_docs(topics)
-    st.write(docs)
     
