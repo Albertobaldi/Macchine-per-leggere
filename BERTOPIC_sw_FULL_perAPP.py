@@ -1,5 +1,5 @@
 import streamlit as st
-import SessionState as session_state
+import SessionState
 import pandas as pd
 import numpy as np
 import base64
