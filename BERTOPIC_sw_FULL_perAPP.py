@@ -73,4 +73,16 @@ if st.button('Processa i dati'):
     st.write(info)
     st.plotly_chart(top, use_container_width=True)
     st.plotly_chart(distribution, use_container_width=True)
+if parola is not None:
+    topics = topic_model.find_topics(parola)
+    st.write(topics)
+    st.button('Visualizza le parti del testo in cui il topic è più presente')
+    docs = topic_model.get_representative_docs(topics)
+    st.write(docs)
+if parola is not None:
+    topics = topic_model.find_topics(parola)
+    st.write(topics)
+    st.button('Visualizza le parti del testo in cui il topic è più presente')
+    docs = topic_model.get_representative_docs(topics)
+    st.write(docs)
     
