@@ -43,13 +43,17 @@ st.title("BERTopic")
 st.subheader("Topic modeling e analisi dei temi su un corpus testuale")
 from sklearn.feature_extraction.text import CountVectorizer
 
+if 'final_stopwords' not in st.session_state:
+	st.session_state.final_stopwords = False
+
 final_stopwords = st.sidebar.text_input("Inserisci una lista di stopwords, separate da una virgola (es. \"parola1, parola2, parola3\")", "")
 final_stopwords_list = stopwords.words('italian')
 if final_stopwords is not None:
     final_stopwords_appen = final_stopwords.split(', ')
     final_sw = tuple(final_stopwords_appen)
     final_stopwords_list.append(final_sw)
-    
+    st.session_state.final_stopwords = True
+        
 vectorizer_model = CountVectorizer(stop_words=final_stopwords_list)
             
 uploaded_file = st.sidebar.file_uploader("Scegli un file di testo")
@@ -69,3 +73,4 @@ if st.button('Processa i dati'):
     st.write(info)
     st.plotly_chart(top, use_container_width=True)
     st.plotly_chart(distribution, use_container_width=True)
+    
