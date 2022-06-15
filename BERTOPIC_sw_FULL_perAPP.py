@@ -21,8 +21,6 @@ import itertools
 from typing import List
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-from nltk.corpus import stopwords
-nltk.download('stopwords')
 
 def _max_width_():
     max_width_str = f"max-width: 1400px;"
@@ -47,13 +45,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 if 'final_stopwords' not in st.session_state:
 	st.session_state.final_stopwords = False
 
-final_stopwords = st.sidebar.text_input("Inserisci una lista di stopwords, separate da una virgola (es. \"parola1, parola2, parola3\")", "")
-final_stopwords_list = stopwords.words('italian')
-if final_stopwords is not None:
-    final_stopwords_appen = final_stopwords.split(', ')
-    final_sw = tuple(final_stopwords_appen)
-    final_stopwords_list.append(final_sw)
-    st.session_state.final_stopwords = True
+final_stopwords_list = st.sidebar.text_input("Inserisci una lista di stopwords, separate da una virgola (es. \"parola1, parola2, parola3\")", "")
         
 vectorizer_model = CountVectorizer(stop_words=final_stopwords_list)
             
