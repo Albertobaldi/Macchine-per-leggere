@@ -47,7 +47,7 @@ if 'final_stopwords' not in st.session_state:
 
 final_stopwords_list = st.sidebar.text_input("Inserisci una lista di stopwords, separate da una virgola (es. \"parola1, parola2, parola3\")", "")
         
-vectorizer_model = CountVectorizer(input='content', encoding='utf-8', analyzer == 'word', stop_words=final_stopwords_list)
+vectorizer_model = CountVectorizer(input='content', encoding='utf-8', analyzer == 'word', stop_words = final_stopwords_list)
             
 uploaded_file = st.sidebar.file_uploader("Scegli un file di testo")
 st.sidebar.caption('Verifica che il file sia privo di formattazione. Si raccomanda di convertire ogni fine di paragrafo in interruzione di linea (\\n): così facendo, l’algoritmo potrà suddividere il testo in paragrafi')
