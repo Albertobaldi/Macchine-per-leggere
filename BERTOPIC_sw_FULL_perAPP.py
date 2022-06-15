@@ -69,11 +69,11 @@ if st.button('Processa i dati'):
     st.plotly_chart(top, use_container_width=True)
     st.plotly_chart(distribution, use_container_width=True)
     parola = st.text_input('Cerca un topic per una parola')
-	if parola is not None:
-   		topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
-    		topics = topic_model.find_topics(parola)
-    		st.write(topics)
-   		st.button('Visualizza le parti del testo in cui il topic è più presente')
-    		docs = topic_model.get_representative_docs(topics)
-    		st.write(docs)
+    if parola is not None:
+   	topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
+    	topics = topic_model.find_topics(parola)
+    	st.write(topics)
+   	st.button('Visualizza le parti del testo in cui il topic è più presente')
+    	docs = topic_model.get_representative_docs(topics)
+    	st.write(docs)
     
