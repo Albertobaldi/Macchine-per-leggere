@@ -50,6 +50,7 @@ final_stopwords_list = st.sidebar.text_input("Inserisci una lista di stopwords, 
         
 vectorizer_model = CountVectorizer(stop_words=final_stopwords_list)
 
+@st.cache
 def get_topic_model():
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
     topics, probs = topic_model.fit_transform(file)
@@ -63,7 +64,9 @@ if uploaded_file is not None:
     file = stringio.read().split('\n')
 if st.button('Processa i dati'):
     st.write("Il vostro file è in elaborazione. Il tempo impiegato nell’analisi dei topic può variare a seconda delle dimensioni del file di testo.")
-    get_topic_model()
+    topic_model = get_topic_model()
+    topics = get_topic_model()
+    probs = get_topic_model()
     freq = topic_model.get_topic_info(); freq.head(10)
     info = topic_model.get_topic_info()
     top = topic_model.visualize_barchart(top_n_topics=10)
