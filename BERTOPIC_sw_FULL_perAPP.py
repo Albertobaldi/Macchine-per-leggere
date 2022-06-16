@@ -69,7 +69,7 @@ if st.button('Processa i dati'):
     st.plotly_chart(top, use_container_width=True)
     st.plotly_chart(distribution, use_container_width=True)
     st.plotly_chart(heatmap, use_container_width=True)
-    parola = st.text_input(label, value="", max_chars=None, key=None, type="default", help=None, autocomplete=None, on_change=None, args=None, kwargs=None, *, placeholder=None, disabled=False)
+    parola = st.text_input('Cerca un topic in base a una parola')
 	if parola is not None:
 		topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
     		st.session_state.topic_model = True
