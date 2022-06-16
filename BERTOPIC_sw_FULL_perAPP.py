@@ -49,6 +49,11 @@ final_stopwords_list = st.sidebar.text_input("Inserisci una lista di stopwords, 
 
         
 vectorizer_model = CountVectorizer(stop_words=final_stopwords_list)
+
+def get_topic_model():
+    topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
+    topics, probs = topic_model.fit_transform(file)
+    return topic_model, topics, probs
             
 uploaded_file = st.sidebar.file_uploader("Scegli un file di testo")
 st.sidebar.caption('Verifica che il file sia privo di formattazione. Si raccomanda di convertire ogni fine di paragrafo in interruzione di linea (\\n): così facendo, l’algoritmo potrà suddividere il testo in paragrafi')
@@ -58,8 +63,7 @@ if uploaded_file is not None:
     file = stringio.read().split('\n')
 if st.button('Processa i dati'):
     st.write("Il vostro file è in elaborazione. Il tempo impiegato nell’analisi dei topic può variare a seconda delle dimensioni del file di testo.")
-    topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
-    topics, probs = topic_model.fit_transform(file)
+    get_topic_model()
     freq = topic_model.get_topic_info(); freq.head(10)
     info = topic_model.get_topic_info()
     top = topic_model.visualize_barchart(top_n_topics=10)
