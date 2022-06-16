@@ -56,9 +56,9 @@ st.sidebar.markdown("""---""")
 if uploaded_file is not None:
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
     file = stringio.read().split('\n')
+@st.cache
 if st.button('Processa i dati'):
     st.write("Il vostro file è in elaborazione. Il tempo impiegato nell’analisi dei topic può variare a seconda delle dimensioni del file di testo.")
-    @st.cache
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
     topics, probs = topic_model.fit_transform(file)
     freq = topic_model.get_topic_info(); freq.head(10)
