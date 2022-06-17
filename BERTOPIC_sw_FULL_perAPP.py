@@ -66,6 +66,6 @@ if st.button('Processa i dati'):
     st.plotly_chart(distribution, use_container_width=True)
     st.plotly_chart(heatmap, use_container_width=True)
     parola = st.text_input('Cerca un topic in base a una parola')
-	if parola is not None:
+    if parola is not None:
     	topics_parola = topic_model.find_topics(parola.read())
     	st.write(topics_parola)
