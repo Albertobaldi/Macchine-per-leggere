@@ -67,6 +67,8 @@ if st.button('Processa i dati per visualizzare la distribuzione di tutti i topic
     st.plotly_chart(heatmap, use_container_width=True)
 parola = st.text_input('Cerca un topic in base a una parola')
 if parola is not None:
+    stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
+    file = stringio.read().split('\n')
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
     topics, probs = topic_model.fit_transform(file)
     topics_parola = topic_model.find_topics(parola)
