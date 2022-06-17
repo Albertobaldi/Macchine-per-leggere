@@ -46,11 +46,11 @@ final_stopwords_list = st.sidebar.text_input("Inserisci una lista di stopwords, 
         
 vectorizer_model = CountVectorizer(stop_words=final_stopwords_list)
             
-uploaded_file = st.sidebar.file_uploader("Scegli un file di testo")
+uploaded_file1, uploaded_file2 = st.sidebar.file_uploader("Scegli un file di testo")
 st.sidebar.caption('Verifica che il file sia privo di formattazione. Si raccomanda di convertire ogni fine di paragrafo in interruzione di linea (\\n): così facendo, l’algoritmo potrà suddividere il testo in paragrafi')
 st.sidebar.markdown("""---""")
 if uploaded_file is not None:
-    stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
+    stringio = StringIO(uploaded_file1.getvalue().decode("utf-8"))
     file = stringio.read().split('\n')
 	
 if st.button('Processa i dati per visualizzare la distribuzione dei topic nel corpus'):
@@ -71,8 +71,8 @@ parola = st.text_input('Cerca un topic in base a una parola')
 if parola is None:
     st.stop()
 else:
-    stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
-    file = stringio.read().split('\n')
+    stringio2 = StringIO(uploaded_file2.getvalue().decode("utf-8"))
+    file = stringio2.read().split('\n')
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
     topics, probs = topic_model.fit_transform(file)
     topics_parola = topic_model.find_topics(parola)
