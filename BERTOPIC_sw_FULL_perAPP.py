@@ -64,9 +64,7 @@ if uploaded_file is not None:
     file = stringio.read().split('\n')
 if st.button('Processa i dati'):
     st.write("Il vostro file è in elaborazione. Il tempo impiegato nell’analisi dei topic può variare a seconda delle dimensioni del file di testo.")
-    topic_model = get_topic_model()
-    topics = get_topic_model()
-    probs = get_topic_model()
+    get_topic_model()
     freq = topic_model.get_topic_info(); freq.head(10)
     info = topic_model.get_topic_info()
     top = topic_model.visualize_barchart(top_n_topics=10)
