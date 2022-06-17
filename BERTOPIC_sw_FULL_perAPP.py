@@ -51,7 +51,8 @@ st.sidebar.caption('Verifica che il file sia privo di formattazione. Si raccoman
 st.sidebar.markdown("""---""")
 if uploaded_file is not None:
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
-    global file = stringio.read().split('\n')
+    global file
+    file = stringio.read().split('\n')
 if st.button('Processa i dati per visualizzare la distribuzione dei topic nel corpus'):
     st.write("Il vostro file è in elaborazione. Il tempo impiegato nell’analisi dei topic può variare a seconda delle dimensioni del file di testo.")
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
