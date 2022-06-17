@@ -68,4 +68,6 @@ if st.button('Processa i dati'):
     parola = st.text_input('Cerca un topic in base a una parola')
     if parola is not None:
     	topics_parola = topic_model.find_topics(parola.read())
+	topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
+    	topics, probs = topic_model.fit_transform(file)
     	st.write(topics_parola)
