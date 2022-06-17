@@ -66,7 +66,7 @@ if uploaded_file is not None:
         st.plotly_chart(distribution, use_container_width=True)
         st.plotly_chart(heatmap, use_container_width=True)
     parola = st.text_input('Cerca un topic in base a una parola')
-        if parola is not None:
+    if parola is not None:
         topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
         topics, probs = topic_model.fit_transform(file)
         topics_parola = topic_model.find_topics(parola)
