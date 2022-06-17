@@ -71,6 +71,8 @@ parola = st.text_input('Cerca un topic in base a una parola')
 if parola is None:
     st.stop()
 else:
+    stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
+    file = stringio.read().split('\n')
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
     topics, probs = topic_model.fit_transform(file)
     topics_parola = topic_model.find_topics(parola)
