@@ -21,7 +21,6 @@ import itertools
 from typing import List
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-
 def _max_width_():
     max_width_str = f"max-width: 1400px;"
     st.markdown(
@@ -41,15 +40,11 @@ st.set_page_config(
 st.title("BERTopic")
 st.subheader("Topic modeling e analisi dei temi su un corpus testuale")
 from sklearn.feature_extraction.text import CountVectorizer
-
 if 'final_stopwords' not in st.session_state:
 	st.session_state.final_stopwords = False
-
 final_stopwords_list = st.sidebar.text_input("Inserisci una lista di stopwords, separate da una virgola (es. \"parola1, parola2, parola3\")", "").split(', ')
-
         
 vectorizer_model = CountVectorizer(stop_words=final_stopwords_list)
-
 @st.cache
 def get_topic_model():
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
@@ -65,29 +60,27 @@ if uploaded_file is not None:
 if st.button('Processa i dati'):
     st.write("Il vostro file è in elaborazione. Il tempo impiegato nell’analisi dei topic può variare a seconda delle dimensioni del file di testo.")
     get_topic_model()
-    	freq = topic_model.get_topic_info(); freq.head(10)
-    	info = topic_model.get_topic_info()
-    	top = topic_model.visualize_barchart(top_n_topics=10)
-    	distribution = topic_model.visualize_distribution(probs[100], min_probability=0.0005)
-    	heatmap = topic_model.visualize_heatmap()
-   	st.write(info)
-   	st.plotly_chart(top, use_container_width=True)
-    	st.plotly_chart(distribution, use_container_width=True)
-    	st.plotly_chart(heatmap, use_container_width=True)
-    	parola = st.text_input('Cerca un topic in base a una parola')
-    	if parola is not None:
-       	    get_topic_model()
-            freq = topic_model.get_topic_info(); freq.head(10)
-            info = topic_model.get_topic_info()
-            top = topic_model.visualize_barchart(top_n_topics=10)
-            distribution = topic_model.visualize_distribution(probs[100], min_probability=0.0005)
-            heatmap = topic_model.visualize_heatmap()
-            st.write(info)
-            st.plotly_chart(top, use_container_width=True)
-            st.plotly_chart(distribution, use_container_width=True)
-            st.plotly_chart(heatmap, use_container_width=True)
-            topics_parola = topic_model.find_topics(parola.read())
-            st.write(topics_parola)
-
-
-    
+    freq = topic_model.get_topic_info(); freq.head(10)
+    info = topic_model.get_topic_info()
+    top = topic_model.visualize_barchart(top_n_topics=10)
+    distribution = topic_model.visualize_distribution(probs[100], min_probability=0.0005)
+    heatmap = topic_model.visualize_heatmap()
+    st.write(info)
+    st.plotly_chart(top, use_container_width=True)
+    st.plotly_chart(distribution, use_container_width=True)
+    st.plotly_chart(heatmap, use_container_width=True)
+    parola = st.text_input('Cerca un topic in base a una parola')
+    if parola is not None:
+        topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
+        topics, probs = topic_model.fit_transform(file)
+        freq = topic_model.get_topic_info(); freq.head(10)
+        info = topic_model.get_topic_info()
+        top = topic_model.visualize_barchart(top_n_topics=10)
+        distribution = topic_model.visualize_distribution(probs[100], min_probability=0.0005)
+        heatmap = topic_model.visualize_heatmap()
+        st.write(info)
+        st.plotly_chart(top, use_container_width=True)
+        st.plotly_chart(distribution, use_container_width=True)
+        st.plotly_chart(heatmap, use_container_width=True)
+        topics_parola = topic_model.find_topics(parola.read())
+        st.write(topics_parola)
