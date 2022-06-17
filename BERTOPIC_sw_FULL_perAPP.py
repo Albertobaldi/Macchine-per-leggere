@@ -52,6 +52,9 @@ st.sidebar.markdown("""---""")
 if uploaded_file is not None:
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
     file = stringio.read().split('\n')
+
+container1, container2 = st.container()
+with container1:
 if st.button('Processa i dati per visualizzare la distribuzione di tutti i topic'):
     st.write("Il vostro file è in elaborazione. Il tempo impiegato nell’analisi dei topic può variare a seconda delle dimensioni del file di testo.")
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
@@ -65,7 +68,7 @@ if st.button('Processa i dati per visualizzare la distribuzione di tutti i topic
     st.plotly_chart(top, use_container_width=True)
     st.plotly_chart(distribution, use_container_width=True)
     st.plotly_chart(heatmap, use_container_width=True)
-with parola:
+with container2:
     parola = st.text_input('Cerca un topic in base a una parola')
     if parola is not None:
         topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
