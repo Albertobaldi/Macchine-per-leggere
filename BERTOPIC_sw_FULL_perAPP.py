@@ -45,11 +45,6 @@ if 'final_stopwords' not in st.session_state:
 final_stopwords_list = st.sidebar.text_input("Inserisci una lista di stopwords, separate da una virgola (es. \"parola1, parola2, parola3\")", "").split(', ')
         
 vectorizer_model = CountVectorizer(stop_words=final_stopwords_list)
-@st.cache
-def get_topic_model():
-    topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
-    topics, probs = topic_model.fit_transform(file)
-    return topic_model, topics, probs
             
 uploaded_file = st.sidebar.file_uploader("Scegli un file di testo")
 st.sidebar.caption('Verifica che il file sia privo di formattazione. Si raccomanda di convertire ogni fine di paragrafo in interruzione di linea (\\n): così facendo, l’algoritmo potrà suddividere il testo in paragrafi')
@@ -59,7 +54,9 @@ if uploaded_file is not None:
     file = stringio.read().split('\n')
 if st.button('Processa i dati'):
     st.write("Il vostro file è in elaborazione. Il tempo impiegato nell’analisi dei topic può variare a seconda delle dimensioni del file di testo.")
-    get_topic_model()
+    topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
+    topics, probs = topic_model.fit_transform(file)
+    return topic_model, topics, probs
     freq = topic_model.get_topic_info(); freq.head(10)
     info = topic_model.get_topic_info()
     top = topic_model.visualize_barchart(top_n_topics=10)
@@ -70,6 +67,6 @@ if st.button('Processa i dati'):
     st.plotly_chart(distribution, use_container_width=True)
     st.plotly_chart(heatmap, use_container_width=True)
     parola = st.text_input('Cerca un topic in base a una parola')
-    while parola is not None:
+    elif parola is not None:
         topics_parola = topic_model.find_topics(parola.read())
         st.write(topics_parola)
