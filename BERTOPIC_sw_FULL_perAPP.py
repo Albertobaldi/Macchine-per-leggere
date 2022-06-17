@@ -72,7 +72,7 @@ if parola is None:
     st.stop()
 else:
     if uploaded_file2 is None:
-	st.stop()
+    st.stop()
     else:
         stringio2 = StringIO(uploaded_file2.getvalue().decode("utf-8"))
         file = stringio2.read().split('\n')
