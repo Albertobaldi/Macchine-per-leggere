@@ -35,7 +35,7 @@ st.sidebar.checkbox("Riabilitare il caricamento dei script", value=False) # disa
 def get_topic_model(file):
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
     topics, probs = topic_model.fit_transform(file)
-return topic_model, probs, topics
+    return topics, probs, topic_model
 
 def processa_topic(topic_model, probs, topics):
     freq = topic_model.get_topic_info(); freq.head(10)
@@ -43,7 +43,7 @@ def processa_topic(topic_model, probs, topics):
     top = topic_model.visualize_barchart(top_n_topics=10)
     distribution = topic_model.visualize_distribution(probs[100], min_probability=0.0005)
     heatmap = topic_model.visualize_heatmap()
-return info, top, distribution, heatmap
+    return info, top, distribution, heatmap
     
 uploaded_file = st.sidebar.file_uploader("Scegli un file di testo")
 st.sidebar.caption('Verifica che il file sia privo di formattazione. Si raccomanda di convertire ogni fine di paragrafo in interruzione di linea (\\n): così facendo, l’algoritmo potrà suddividere il testo in paragrafi')
