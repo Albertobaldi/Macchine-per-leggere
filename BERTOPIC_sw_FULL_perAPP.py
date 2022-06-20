@@ -73,6 +73,5 @@ if st.text_input('Cerca un topic per una parola'):
     topics, probs = topic_model.fit_transform(file)
     topics = topic_model.find_topics(parola)
     st.write(topics)
-    st.button('Visualizza le parti del testo in cui il topic è più presente')
     docs = topic_model.get_representative_docs(topics)
     st.write(docs)
