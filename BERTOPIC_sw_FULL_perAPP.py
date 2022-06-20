@@ -71,7 +71,7 @@ if st.text_input('Cerca un topic per una parola'):
     parola = st.text_input
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
     topics, probs = topic_model.fit_transform(file)
-    topics = topic_model.find_topics(parola)
+    topics = topic_model.find_topics([parola])
     st.write(topics)
     docs = topic_model.get_representative_docs(topics)
     st.write(docs)
