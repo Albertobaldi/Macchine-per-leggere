@@ -49,7 +49,6 @@ vectorizer_model = CountVectorizer(stop_words=final_stopwords_list)
 
 st.sidebar.checkbox("Riabilitare il caricamento dei script", value=False) # disable script reloading
 
-@st.cache
 topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
 
 uploaded_file = st.sidebar.file_uploader("Scegli un file di testo")
