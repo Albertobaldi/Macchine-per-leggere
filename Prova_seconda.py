@@ -53,6 +53,8 @@ if uploaded_file is not None:
     file = stringio.read().split('\n')
 	
 if st.button('Processa i dati per visualizzare la distribuzione dei topic nel corpus'):
+    topic_model, probs, topics = get_topic_model(file)
+    info, top, distribution, heatmap = processa_topic(topic_model, probs, topics)
     st.write("Il vostro file è in elaborazione. Il tempo impiegato nell’analisi dei topic può variare a seconda delle dimensioni del file di testo.")
     st.write(info)
     st.plotly_chart(top, use_container_width=True)
