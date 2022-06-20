@@ -73,7 +73,7 @@ if st.text_input('Cerca un topic per una parola'):
     topics, probs = topic_model.fit_transform(file)
     topics = topic_model.find_topics(str(parola))
     st.write(topics)
-    topic_1 = topics([:0])
-    docs = topic_model.get_representative_docs(str(topic_1))
+    topic_1 = topics[:0]
+    docs = topic_model.get_representative_docs(int(topic_1))
     st.write(docs)
     st.write(docs)
