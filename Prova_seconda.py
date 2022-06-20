@@ -49,13 +49,8 @@ vectorizer_model = CountVectorizer(stop_words=final_stopwords_list)
 
 st.sidebar.checkbox("Riabilitare il caricamento dei script", value=False) # disable script reloading
             
-def upload ():
-    uploaded_file = st.file_uploader("Carica un file .txt", type=["txt"])
-    if uploaded_file is not None:
-        with open(uploaded_file, "r") as f:
-            text = f.read()
-        return text_input(text) # return the text input
-    
+topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
+
 uploaded_file = st.sidebar.file_uploader("Scegli un file di testo")
 st.sidebar.caption('Verifica che il file sia privo di formattazione. Si raccomanda di convertire ogni fine di paragrafo in interruzione di linea (\\n): così facendo, l’algoritmo potrà suddividere il testo in paragrafi')
 st.sidebar.markdown("""---""")
@@ -65,8 +60,6 @@ if uploaded_file is not None:
 	
 if st.button('Processa i dati per visualizzare la distribuzione dei topic nel corpus'):
     st.write("Il vostro file è in elaborazione. Il tempo impiegato nell’analisi dei topic può variare a seconda delle dimensioni del file di testo.")
-    global topic_model
-    topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
     topics, probs = topic_model.fit_transform(file)
     freq = topic_model.get_topic_info(); freq.head(10)
     info = topic_model.get_topic_info()
