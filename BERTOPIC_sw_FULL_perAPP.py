@@ -67,7 +67,8 @@ if st.button('Processa i dati per visualizzare la distribuzione dei topic nel co
     st.plotly_chart(distribution, use_container_width=True)
     st.plotly_chart(heatmap, use_container_width=True)
 
-if parola = st.text_input('Cerca un topic per una parola'):
+if st.text_input('Cerca un topic per una parola'):
+    parola = st.text_input('Cerca un topic per una parola'):
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
     topics, probs = topic_model.fit_transform(file)
     topics = topic_model.find_topics(parola)
