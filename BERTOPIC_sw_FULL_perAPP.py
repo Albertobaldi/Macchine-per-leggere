@@ -52,7 +52,6 @@ st.sidebar.markdown("""---""")
 if uploaded_file is not None:
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
     file = stringio.read().split('\n')
-	
 if st.button('Processa i dati per visualizzare la distribuzione dei topic nel corpus'):
     st.write("Il vostro file è in elaborazione. Il tempo impiegato nell’analisi dei topic può variare a seconda delle dimensioni del file di testo.")
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
@@ -66,7 +65,6 @@ if st.button('Processa i dati per visualizzare la distribuzione dei topic nel co
     st.plotly_chart(top, use_container_width=True)
     st.plotly_chart(distribution, use_container_width=True)
     st.plotly_chart(heatmap, use_container_width=True)
-
 if st.text_input('Cerca un topic per una parola'):
     parola = st.text_input
     topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
