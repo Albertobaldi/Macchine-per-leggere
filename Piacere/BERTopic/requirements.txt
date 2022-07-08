@@ -1,4 +1,0 @@
-bertopic
-wordcloud
-matplotlib
-streamlit
