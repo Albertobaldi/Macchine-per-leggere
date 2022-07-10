@@ -1,5 +1,2 @@
 bertopic
-wordcloud
-matplotlib
 streamlit
-cffi==1.15.2
