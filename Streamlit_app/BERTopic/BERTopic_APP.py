@@ -24,7 +24,7 @@ st.subheader("Topic modeling e analisi dei temi su un corpus testuale")
 from sklearn.feature_extraction.text import CountVectorizer
 if 'final_stopwords' not in st.session_state:
 	st.session_state.final_stopwords = False
-final_stopwords_list = st.sidebar.text_input("Inserisci una lista di stopwords, separate da una virgola (es. \"parola1, parola2, parola3\")", "").split(', ')
+final_stopwords_list = st.sidebar.text_input("Inserisci una lista di stopwords, senza lettere maiuscole (neppure nei nomi propri) e separate da una virgola (es. \"parola1, parola2, parola3\")", "").split(', ')
         
 vectorizer_model = CountVectorizer(stop_words=final_stopwords_list)
             
