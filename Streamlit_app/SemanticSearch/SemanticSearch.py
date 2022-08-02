@@ -33,16 +33,16 @@ if uploaded_file is not None:
 if st.text_input('Inserisci una frase'):
     queries = st.text_input
     top_k = min(5, len(corpus))
-for query in queries:
-    query_embedding = embedder.encode(query, convert_to_tensor=True)
+    for query in queries:
+        query_embedding = embedder.encode(query, convert_to_tensor=True)
 
-    # We use cosine-similarity and torch.topk to find the highest 5 scores
-    cos_scores = util.cos_sim(query_embedding, corpus_embeddings)[0]
-    top_results = torch.topk(cos_scores, k=top_k)
+        # We use cosine-similarity and torch.topk to find the highest 5 scores
+        cos_scores = util.cos_sim(query_embedding, corpus_embeddings)[0]
+        top_results = torch.topk(cos_scores, k=top_k)
 
-    st.write("\n\n======================\n\n")
-    st.write("Query:", query)
-    st.write("\nTop 5 most similar sentences in corpus:")
+        st.write("\n\n======================\n\n")
+        st.write("Query:", query)
+        st.write("\nTop 5 most similar sentences in corpus:")
 
-    for score, idx in zip(top_results[0], top_results[1]):
-        st.write(corpus[idx], "(Score: {:.4f})".format(score))
+        for score, idx in zip(top_results[0], top_results[1]):
+            st.write(corpus[idx], "(Score: {:.4f})".format(score))
