@@ -33,7 +33,7 @@ if uploaded_file is not None:
     corpus_embeddings = embedder.encode(file, convert_to_tensor=True)
 if st.text_input('Inserisci una frase'):
     queries = st.text_input
-    top_k = min(5, len(corpus))
+    top_k = min(5, len(file))
     for query in queries:
         query_embedding = embedder.encode(query, convert_to_tensor=True)
 
