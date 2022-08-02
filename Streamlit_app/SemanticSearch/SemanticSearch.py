@@ -45,4 +45,4 @@ if st.text_input('Inserisci una frase'):
     st.write("\nTop 5 most similar sentences in corpus:")
 
     for score, idx in zip(top_results[0], top_results[1]):
-        st.write(corpus[idx], "(Score: {:.4f})".format(score))
+        st.write(file[idx], "(Score: {:.4f})".format(score))
