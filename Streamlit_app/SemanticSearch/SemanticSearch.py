@@ -29,6 +29,7 @@ st.sidebar.markdown("""---""")
 if uploaded_file is not None:
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
     file = stringio.read().split('\n')
+    embedder = SentenceTransformer('all-MiniLM-L6-v2')
     corpus_embeddings = embedder.encode(file, convert_to_tensor=True)
 if st.text_input('Inserisci una frase'):
     queries = st.text_input
