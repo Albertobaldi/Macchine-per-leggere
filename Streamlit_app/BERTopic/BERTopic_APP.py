@@ -3,6 +3,7 @@ import warnings
 warnings.filterwarnings("ignore")
 from io import StringIO
 from bertopic import BERTopic
+from bertopic.backend import languages
 def _max_width_():
     max_width_str = f"max-width: 1400px;"
     st.markdown(
@@ -36,15 +37,15 @@ if uploaded_file is not None:
     file = stringio.read().split('\n')
 if st.button('Processa i dati per visualizzare la distribuzione dei topic nel corpus'):
     st.write("Il vostro file è in elaborazione. Il tempo impiegato nell’analisi dei topic può variare a seconda delle dimensioni del file di testo.")
-    topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model, nr_topics=10)
+    topic_model = BERTopic(language="italian", top_n_words=10, calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model, min_topic_size=3, nr_topics=10)
     topics, probs = topic_model.fit_transform(file)
     freq = topic_model.get_topic_info(); freq.head(10)
     info = topic_model.get_topic_info()
     fig1 = topic_model.visualize_topics()
-    fig2 = topic_model.visualize_distribution(probs[200], min_probability=0)
-    fig3 = topic_model.visualize_hierarchy(top_n_topics=50)
-    fig4 = topic_model.visualize_barchart(top_n_topics=15)
-    fig5 = topic_model.visualize_heatmap(n_clusters=20, width=1000, height=1000)
+    fig2 = topic_model.visualize_distribution(probs[0], min_probability=0)
+    fig3 = topic_model.visualize_hierarchy(top_n_topics=10)
+    fig4 = topic_model.visualize_barchart(top_n_topics=10)
+    fig5 = topic_model.visualize_heatmap(n_clusters=9, width=1000, height=1000)
     fig6 = topic_model.visualize_term_rank()
     st.write(info)
     st.plotly_chart(fig1, use_container_width=True)
