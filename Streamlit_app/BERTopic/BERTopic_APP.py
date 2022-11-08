@@ -54,11 +54,3 @@ if st.button('Processa i dati per visualizzare la distribuzione dei topic nel co
     st.plotly_chart(fig4, use_container_width=True)
     st.plotly_chart(fig5, use_container_width=True)
     st.plotly_chart(fig6, use_container_width=True)
-if st.text_input('Oppure cerca un topic per una parola e individua i paragrafi in cui è più diffuso'):
-    parola = st.text_input
-    topic_model = BERTopic(language="multilingual", calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model)
-    topics, probs = topic_model.fit_transform(file)
-    topics = topic_model.find_topics(str(parola))
-    topic_1 = str(topics[0])
-    docs = topic_model.get_representative_docs(topic_1)
-    st.write(docs)
