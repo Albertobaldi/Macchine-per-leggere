@@ -35,7 +35,7 @@ st.sidebar.markdown("""---""")
 if uploaded_file is not None:
     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
     file = stringio.read().split('\n')
-if st.button('Processa i dati per visualizzare la distribuzione dei topic nel corpus'):
+if st.button('Processa i dati testuali per visualizzare la distribuzione dei topic nel corpus'):
     st.write("Il vostro file è in elaborazione. Il tempo impiegato nell’analisi dei topic può variare a seconda delle dimensioni del file di testo.")
     topic_model = BERTopic(language="italian", top_n_words=10, calculate_probabilities=True, verbose=True, vectorizer_model=vectorizer_model, min_topic_size=3, nr_topics=10)
     topics, probs = topic_model.fit_transform(file)
